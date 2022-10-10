@@ -1,10 +1,10 @@
 ---
 layout: post
 title: Lift, Splat, Shoot Encoding Images from Arbitrary Camera Rigs by Implicitly Unprojecting to 3D
-image: pixiv_1.jpg
+image: pixiv_5.jpg
 date: 2022-10-10 16:04:20 +0800
 tags: [Computer Vision, 3D Object Detection]
-categories: [papers]
+categories: papers
 ---
 
 
