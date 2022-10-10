@@ -1,7 +1,7 @@
 title: Welcome to Zanue's Blog
 description: Blogs for Computer Vision, Geometry and More...
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "flexton.netlify.com" # the base hostname & protocol for your site, e.g. http://example.com
+url:  zanue.github.io # the base hostname & protocol for your site, e.g. http://example.com
 
 # Author
 author-name:    Zanue
@@ -9,7 +9,7 @@ author-image:   my_photo.png
 author-job:     CVer
 author-email:   SJTU19zzw@sjtu.edu.cn # Add your email for contant form.
 author-twitter: Zanue # Add your twitter account
-about-author:   I am a student in Shanghai Jiao Tong University. Keep learning everything.
+about-author:   I am an undergraduate student in Shanghai Jiao Tong University. Keep learning everything.
 
 # Social settings
 social-twitter:   
