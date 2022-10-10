@@ -3,8 +3,8 @@ layout: post
 title: 3D Object Detection Methods
 image: pixiv_1.jpg
 date: 2022-10-10 16:04:20 +0800
-tags: [books, rest]
-categories: books
+tags: [Computer Vision, 3D Object Detection]
+categories: 3D Object Detection
 ---
 
 
@@ -40,11 +40,12 @@ $\mathrm{DVPQ}$:
 ![](https://github.com/Zanue/Zanue.github.io/raw/main/images/dvpq.jpg){:height="60%" width="60%"}
 
 ### Model
+
 <!-- <div align=center><img src=https://github.com/Zanue/Zanue.github.io/raw/main/images/vipdeeplab.jpg width=80% /></div> -->
-![](https://github.com/Zanue/Zanue.github.io/raw/main/images/vipdeeplab.jpg){:height="60%" width="60%"}
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/vipdeeplab.jpg){:height="80%" width="80%"}
 
 <!-- <div align=center><img src=https://github.com/Zanue/Zanue.github.io/raw/main/images/vipdeeplab2.jpg width=80% /></div> -->
-![](https://github.com/Zanue/Zanue.github.io/raw/main/images/vipdeeplab2.jpg){:height="60%" width="60%"}
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/vipdeeplab2.jpg){:height="80%" width="80%"}
 
 
 
@@ -60,7 +61,7 @@ $\mathrm{DVPQ}$:
 ### Model
 
 <!-- <div align=center><img src=https://github.com/Zanue/Zanue.github.io/raw/main/images/r4d.jpg width=80% /></div> -->
-![](https://github.com/Zanue/Zanue.github.io/raw/main/images/r4d.jpg){:height="60%" width="60%"}
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/r4d.jpg){:height="80%" width="80%"}
 
 
 ## Pseudo-LiDAR from Visual Depth Estimation: Bridging the Gap in 3D Object Detection for Autonomous Driving
@@ -73,7 +74,7 @@ $\mathrm{DVPQ}$:
 ### Model
 
 <!-- <div align=center><img src=https://github.com/Zanue/Zanue.github.io/raw/main/images/pseudo-lidar.jpg width=80% /></div> -->
-![](https://github.com/Zanue/Zanue.github.io/raw/main/images/pseudo-lidar.jpg){:height="60%" width="60%"}
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/pseudo-lidar.jpg){:height="80%" width="80%"}
 
 ## Lift, Splat, Shoot: Encoding Images from Arbitrary Camera Rigs by Implicitly Unprojecting to 3D
 
@@ -85,11 +86,11 @@ $\mathrm{DVPQ}$:
 In Section 3, we explain how our model “lifts” images into 3D by generating a frustum-shaped point cloud of contextual features, “splats” all frustums onto a reference plane as is convenient for the downstream task of motion planning. In Section 3.3, we propose a method for “shooting” proposal trajectories into this reference plane for interpretable end-to-end motion planning.
 
 <!-- <div align=center><img src=https://github.com/Zanue/Zanue.github.io/raw/main/images/lift.jpg width=80% /></div> -->
-![](https://github.com/Zanue/Zanue.github.io/raw/main/images/lift.jpg){:height="60%" width="60%"}
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/lift.jpg){:height="80%" width="80%"}
 
 
 <!-- <div align=center><img src=https://github.com/Zanue/Zanue.github.io/raw/main/images/lift-splat-shoot.jpg width=80% /></div> -->
-![](https://github.com/Zanue/Zanue.github.io/raw/main/images/lift-splat-shoot.jpg){:height="60%" width="60%"}
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/lift-splat-shoot.jpg){:height="80%" width="80%"}
 
 
 ## DETR3D: 3D Object Detection from Multi-view Images via 3D-to-2D Queries
@@ -102,4 +103,4 @@ In Section 3, we explain how our model “lifts” images into 3D by generating 
 ### Model
 
 <!-- <div align=center><img src=https://github.com/Zanue/Zanue.github.io/raw/main/images/detr3d.jpg width=80% /></div> -->
-![](https://github.com/Zanue/Zanue.github.io/raw/main/images/detr3d.jpg){:height="60%" width="60%"}
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/detr3d.jpg){:height="80%" width="80%"}
