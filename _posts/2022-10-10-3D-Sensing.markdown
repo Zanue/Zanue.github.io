@@ -1,0 +1,94 @@
+---
+layout: post
+title: 3D Object Detection Methods
+image: pixiv_1.jpg
+date: 2022-10-10 16:04:20 +0800
+tags: [books, rest]
+categories: books
+---
+
+
+## ViP-DeepLab: Learning Visual Perception with Depth-aware Video Panoptic Segmentation (9 Dec 2020)
+
+
+### Contributions:
+1. A new task Depth-aware Video Panoptic Segmentation (DVPS), divided into two sub-tasks:
+   1. video panoptic segmentation;
+   2. monocular depth estimation
+
+2. Two DVPS datasets along with an evaluation metric Depth-aware Video Panoptic Quality (DVPQ)
+
+3. ViP-DeepLab, a unified model for DVPS
+
+
+### Metrics
+With window size $k$ and class $c$,  $\mathrm{VPQ}:$
+<div align=center><img src=../images/vpq.jpg width=60% /></div>
+
+
+Realtionship between $\mathrm{VPQ}$ and $\mathrm{PQ}$:
+<div align=center><img src=../images/vpq2.jpg width=60% /></div>
+
+
+$\mathrm{DVPQ}$:
+<div align=center><img src=../images/dvpq.jpg width=60% /></div>
+
+
+### Model
+<div align=center><img src=../images/vipdeeplab.jpg width=80% /></div>
+
+<div align=center><img src=../images/vipdeeplab2.jpg width=80% /></div>
+
+
+
+
+## R4D: UTILIZING REFERENCE OBJECTS FOR LONG- RANGE DISTANCE ESTIMATION
+
+### Contributions:
+1. A new task Long-Range Distance Estimation:
+   1. Concretely, given the short-range LiDAR signal and the camera image, the output of this task is the distances of long-range objects (beyond LiDAR range).
+2. Two datasets, the Pseudo Long-Range KITTI Dataset and Waymo Open Dataset - Long-Range Labels;
+3. R4D, the first framework to accurately estimate the distance of long-range objects by using references with known distances.
+
+
+### Model
+
+<div align=center><img src=../images/r4d.jpg width=80% /></div>
+
+
+## Pseudo-LiDAR from Visual Depth Estimation: Bridging the Gap in 3D Object Detection for Autonomous Driving
+
+### Contributions
+
+1. show empirically that a major cause for the performance gap between stereo-based and LiDAR-based 3D object detection is not the quality of the estimated depth but its *representation*
+2. propose pseudo-LiDAR as a new recommended representation of estimated depth for 3D object detection and show that it leads to state-of-the-art stereo-based 3D object detection
+
+### Model
+
+<div align=center><img src=../images/pseudo-lidar.jpg width=80% /></div>
+
+
+## Lift, Splat, Shoot: Encoding Images from Arbitrary Camera Rigs by Implicitly Unprojecting to 3D
+
+
+### Contributions
+1. A new end-to-end architecture that directly extracts a bird’s-eye-view representation of a scene given image data from an arbitrary number of cameras.
+
+### Model
+In Section 3, we explain how our model “lifts” images into 3D by generating a frustum-shaped point cloud of contextual features, “splats” all frustums onto a reference plane as is convenient for the downstream task of motion planning. In Section 3.3, we propose a method for “shooting” proposal trajectories into this reference plane for interpretable end-to-end motion planning.
+
+<div align=center><img src=../images/lift.jpg width=80% /></div>
+
+<div align=center><img src=../images/lift-splat-shoot.jpg width=80% /></div>
+
+
+## DETR3D: 3D Object Detection from Multi-view Images via 3D-to-2D Queries
+
+### Contributions
+1. Different from existing works that combine object predictions from the different camera views in a final stage, our method fuses information from all the camera views in each layer of computation. To the best of our knowledge, **this is the first attempt to cast multi-camera detection as 3D set-to-set prediction**.
+2. introduce a module that connects 2D feature extraction and 3D bounding box prediction via backward geometric projection. It does not suffer from inaccurate depth predictions from a secondary network, and seamlessly uses information from multiple cameras by back-projecting 3D information onto all available frames.
+3. method does not require post-processing such as per-image or global NMS, and it is on par with existing NMS-based methods. In the camera overlap regions, our method outperforms others by a substantial margin.
+
+### Model
+
+<div align=center><img src=../images/detr3d.jpg width=80% /></div>
