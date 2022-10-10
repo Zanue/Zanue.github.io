@@ -1,6 +1,6 @@
 title: Welcome to Zanue's Blog
 description: Blogs for Computer Vision, Geometry and More...
-baseurl: "/blogs" # the subpath of your site, e.g. /blog
+baseurl: "" # the subpath of your site, e.g. /blog
 url:  zanue.github.io # the base hostname & protocol for your site, e.g. http://example.com
 
 # Author
