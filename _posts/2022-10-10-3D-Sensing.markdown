@@ -23,7 +23,12 @@ categories: books
 
 ### Metrics
 With window size $k$ and class $c$,  $\mathrm{VPQ}:$
+<figure>
+<a><img src=https://github.com/Zanue/Zanue.github.io/raw/main/images/vpq.jpg width=60% /></a>
+</figure>
 <!-- <div align=center><img src=https://github.com/Zanue/Zanue.github.io/raw/main/images/vpq.jpg width=60% /></div> -->
+![](images/vpq.jpg)
+
 ![](https://github.com/Zanue/Zanue.github.io/raw/main/images/vpq.jpg)
 
 
@@ -83,6 +88,7 @@ In Section 3, we explain how our model “lifts” images into 3D by generating 
 
 <!-- <div align=center><img src=https://github.com/Zanue/Zanue.github.io/raw/main/images/lift.jpg width=80% /></div> -->
 ![](https://github.com/Zanue/Zanue.github.io/raw/main/images/lift.jpg)
+
 
 <!-- <div align=center><img src=https://github.com/Zanue/Zanue.github.io/raw/main/images/lift-splat-shoot.jpg width=80% /></div> -->
 ![](https://github.com/Zanue/Zanue.github.io/raw/main/images/lift-splat-shoot.jpg)
