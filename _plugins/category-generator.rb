@@ -15,7 +15,7 @@ module Jekyll
   end
 
   class CategoryPageGenerator < Generator
-    safe true
+    safe false
 
     def generate(site)
       if site.layouts.key? 'category-page'
