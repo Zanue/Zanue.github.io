@@ -23,7 +23,7 @@ categories: books
 
 ### Metrics
 With window size $k$ and class $c$,  $\mathrm{VPQ}:$
-<!-- <div align=center><img src=https://github.com/Zanue/Zanue.github.io/raw/main/images/vpq.jpg width=60% /></div> -->
+<div align=center><img src=https://github.com/Zanue/Zanue.github.io/raw/main/images/vpq.jpg width=60% /></div>
 
 ![](https://github.com/Zanue/Zanue.github.io/raw/main/images/vpq.jpg)
 
