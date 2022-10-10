@@ -4,7 +4,7 @@ title: Pseudo-LiDAR from Visual Depth Estimation: Bridging the Gap in 3D Object 
 image: pixiv_1.jpg
 date: 2022-10-10 16:04:20 +0800
 tags: [Computer-Vision, 3D-Object-Detection]
-categories: 3DObjectDetection
+categories: 3d-object-detection
 ---
 
 ## Pseudo-LiDAR from Visual Depth Estimation: Bridging the Gap in 3D Object Detection for Autonomous Driving
