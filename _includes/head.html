@@ -16,6 +16,10 @@
       {% include main.scss %}
     {% endcapture %}
     {{ include_to_scssify | scssify }}
+
+    {% if jekyll.environment == 'production' and site.google_analytics %}
+    {% include google-analytics.html %}
+    {% endif %}
   </style>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -24,6 +28,8 @@
         inlineMath: [['$','$']]
         }
     });
-</script>
+  </script>
+
+  
 <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 </head>
