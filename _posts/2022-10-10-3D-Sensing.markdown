@@ -23,14 +23,15 @@ categories: books
 
 ### Metrics
 With window size $k$ and class $c$,  $\mathrm{VPQ}:$
-<div align=center><img src=https://github.com/Zanue/Zanue.github.io/raw/main/images/vpq.jpg width=60% referrerpolicy="no-referrer"/></div>
+<meta name="referrer" content="never">
+<div align=center><img src=https://github.com/Zanue/Zanue.github.io/raw/main/images/vpq.jpg width=60%/></div>
 
 ![](https://github.com/Zanue/Zanue.github.io/raw/main/images/vpq.jpg)
 
 
 Realtionship between $\mathrm{VPQ}$ and $\mathrm{PQ}$:
 <!-- <div align=center><img src=https://github.com/Zanue/Zanue.github.io/raw/main/images/vpq2.jpg width=60% /></div> -->
-![](https://github.com/Zanue/Zanue.github.io/raw/main/images/vpq2.jpg)
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/vpq2.jpg){:height="50%" width="50%"}
 
 
 $\mathrm{DVPQ}$:
