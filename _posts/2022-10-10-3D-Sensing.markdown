@@ -23,21 +23,21 @@ categories: books
 
 ### Metrics
 With window size $k$ and class $c$,  $\mathrm{VPQ}:$
-<div align=center><img src=https://github.com/Zanue/Zanue.github.io/blob/main/images/vpq.jpg width=60% /></div>
+<div align=center><img src=https://github.com/Zanue/Zanue.github.io/raw/main/images/vpq.jpg width=60% /></div>
 
 
 Realtionship between $\mathrm{VPQ}$ and $\mathrm{PQ}$:
-<div align=center><img src=https://github.com/Zanue/Zanue.github.io/blob/main/images/vpq2.jpg width=60% /></div>
+<div align=center><img src=https://github.com/Zanue/Zanue.github.io/raw/main/images/vpq2.jpg width=60% /></div>
 
 
 $\mathrm{DVPQ}$:
-<div align=center><img src=https://github.com/Zanue/Zanue.github.io/blob/main/images/dvpq.jpg width=60% /></div>
+<div align=center><img src=https://github.com/Zanue/Zanue.github.io/raw/main/images/dvpq.jpg width=60% /></div>
 
 
 ### Model
-<div align=center><img src=https://github.com/Zanue/Zanue.github.io/blob/main/images/vipdeeplab.jpg width=80% /></div>
+<div align=center><img src=https://github.com/Zanue/Zanue.github.io/raw/main/images/vipdeeplab.jpg width=80% /></div>
 
-<div align=center><img src=https://github.com/Zanue/Zanue.github.io/blob/main/images/vipdeeplab2.jpg width=80% /></div>
+<div align=center><img src=https://github.com/Zanue/Zanue.github.io/raw/main/images/vipdeeplab2.jpg width=80% /></div>
 
 
 
@@ -53,7 +53,7 @@ $\mathrm{DVPQ}$:
 
 ### Model
 
-<div align=center><img src=https://github.com/Zanue/Zanue.github.io/blob/main/images/r4d.jpg width=80% /></div>
+<div align=center><img src=https://github.com/Zanue/Zanue.github.io/raw/main/images/r4d.jpg width=80% /></div>
 
 
 ## Pseudo-LiDAR from Visual Depth Estimation: Bridging the Gap in 3D Object Detection for Autonomous Driving
@@ -65,7 +65,7 @@ $\mathrm{DVPQ}$:
 
 ### Model
 
-<div align=center><img src=https://github.com/Zanue/Zanue.github.io/blob/main/images/pseudo-lidar.jpg width=80% /></div>
+<div align=center><img src=https://github.com/Zanue/Zanue.github.io/raw/main/images/pseudo-lidar.jpg width=80% /></div>
 
 
 ## Lift, Splat, Shoot: Encoding Images from Arbitrary Camera Rigs by Implicitly Unprojecting to 3D
@@ -77,9 +77,9 @@ $\mathrm{DVPQ}$:
 ### Model
 In Section 3, we explain how our model “lifts” images into 3D by generating a frustum-shaped point cloud of contextual features, “splats” all frustums onto a reference plane as is convenient for the downstream task of motion planning. In Section 3.3, we propose a method for “shooting” proposal trajectories into this reference plane for interpretable end-to-end motion planning.
 
-<div align=center><img src=https://github.com/Zanue/Zanue.github.io/blob/main/images/lift.jpg width=80% /></div>
+<div align=center><img src=https://github.com/Zanue/Zanue.github.io/raw/main/images/lift.jpg width=80% /></div>
 
-<div align=center><img src=https://github.com/Zanue/Zanue.github.io/blob/main/images/lift-splat-shoot.jpg width=80% /></div>
+<div align=center><img src=https://github.com/Zanue/Zanue.github.io/raw/main/images/lift-splat-shoot.jpg width=80% /></div>
 
 
 ## DETR3D: 3D Object Detection from Multi-view Images via 3D-to-2D Queries
@@ -91,4 +91,4 @@ In Section 3, we explain how our model “lifts” images into 3D by generating 
 
 ### Model
 
-<div align=center><img src=https://github.com/Zanue/Zanue.github.io/blob/main/images/detr3d.jpg width=80% /></div>
+<div align=center><img src=https://github.com/Zanue/Zanue.github.io/raw/main/images/detr3d.jpg width=80% /></div>
