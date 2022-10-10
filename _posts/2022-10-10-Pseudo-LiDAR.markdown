@@ -3,8 +3,8 @@ layout: post
 title: Pseudo-LiDAR from Visual Depth Estimation: Bridging the Gap in 3D Object Detection for Autonomous Driving
 image: pixiv_1.jpg
 date: 2022-10-10 16:04:20 +0800
-tags: [Computer-Vision, 3D-Object-Detection]
-categories: 3d-object-detection
+tags: [Computer Vision, 3D Object Detection]
+categories: papers
 ---
 
 ## Pseudo-LiDAR from Visual Depth Estimation: Bridging the Gap in 3D Object Detection for Autonomous Driving

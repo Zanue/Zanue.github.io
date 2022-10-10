@@ -3,8 +3,8 @@ layout: post
 title: DETR3D: 3D Object Detection from Multi-view Images via 3D-to-2D Queries
 image: pixiv_1.jpg
 date: 2022-10-10 16:04:20 +0800
-tags: [Computer-Vision, 3D-Object-Detection]
-categories: 3d-object-detection
+tags: [Computer Vision, 3D Object Detection]
+categories: papers
 ---
 
 
