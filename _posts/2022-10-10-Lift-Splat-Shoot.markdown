@@ -1,10 +1,10 @@
 ---
 layout: post
-title: 3D Object Detection Methods
+title: Lift, Splat, Shoot: Encoding Images from Arbitrary Camera Rigs by Implicitly Unprojecting to 3D
 image: pixiv_1.jpg
 date: 2022-10-10 16:04:20 +0800
 tags: [Computer-Vision, 3D-Object-Detection]
-categories: 3D-Object-Detection
+categories: 3DObjectDetection
 ---
 
 
