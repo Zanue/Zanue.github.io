@@ -12,12 +12,12 @@ categories: blogs
 
 以下内容引自Blog:
 
-[](https://zhuanlan.zhihu.com/p/53773183)
+https://zhuanlan.zhihu.com/p/53773183
 
-### 内存层级
+
 同CPU一样，GPU也有不同层级的内存。越靠近核心的内存速度越快，但容量越小；反之，越远离核心的内存速度越慢，但容量较大。
 
-![](https://pic4.zhimg.com/80/v2-f40c0b301c39da9230f169f3702f1d97_720w.webp){:height="80%" width="80%"}
+![](https://pic4.zhimg.com/80/v2-f40c0b301c39da9230f169f3702f1d97_720w.webp){:height="60%" width="60%"}
 
 上图是NVIDIA设备的硬件示意图。
 
@@ -35,7 +35,7 @@ categories: blogs
 
 以上是从硬件的角度解读了一下GPU的内存层级。从编程角度来看，CUDA的线程网格、线程块、线程与各个内存见的关系如下图：
 
-![](https://pic3.zhimg.com/80/v2-c716333e7f0716d080c6b24383fb368e_720w.webp)
+![](https://pic3.zhimg.com/80/v2-c716333e7f0716d080c6b24383fb368e_720w.webp){:height="60%" width="60%"}
 
 1. 寄存器和本地内存绑定到了每个线程，其他线程无法访问。
 2. 同一个线程块内的线程，可以访问同一块共享内存。注意，即使两个线程块被调度到了同一个SM上，他们的共享内存也是隔离开的，不能互相访问。
