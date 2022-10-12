@@ -1,7 +1,7 @@
 ---
 layout: post
 title: GPU Memory Architecture
-image: pixiv_7.jpg
+image: 93447255_p0_master1200.jpg
 date: 2022-10-11 10:28:00 +0800
 tags: [GPU, Architecture]
 categories: blogs
