@@ -8,11 +8,13 @@ categories: blogs
 ---
 
 
-## GPU Memory Architecture
 
 以下内容引自Blog:
 
-https://zhuanlan.zhihu.com/p/53773183
+https://zhuanlan.zhihu.com/p/53773183  
+  
+
+<br/><br/>
 
 
 同CPU一样，GPU也有不同层级的内存。越靠近核心的内存速度越快，但容量越小；反之，越远离核心的内存速度越慢，但容量较大。

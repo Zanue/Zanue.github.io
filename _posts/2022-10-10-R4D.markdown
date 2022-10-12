@@ -8,7 +8,6 @@ categories: papers
 ---
 
 
-## R4D: UTILIZING REFERENCE OBJECTS FOR LONG- RANGE DISTANCE ESTIMATION
 
 ### Contributions:
 1. A new task Long-Range Distance Estimation:

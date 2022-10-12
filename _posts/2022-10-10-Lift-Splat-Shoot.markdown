@@ -8,8 +8,6 @@ categories: papers
 ---
 
 
-## Lift, Splat, Shoot: Encoding Images from Arbitrary Camera Rigs by Implicitly Unprojecting to 3D
-
 
 ### Contributions
 1. A new end-to-end architecture that directly extracts a bird’s-eye-view representation of a scene given image data from an arbitrary number of cameras.

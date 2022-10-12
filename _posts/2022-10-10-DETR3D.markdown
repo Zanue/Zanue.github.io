@@ -8,7 +8,6 @@ categories: papers
 ---
 
 
-## DETR3D: 3D Object Detection from Multi-view Images via 3D-to-2D Queries
 
 ### Contributions
 1. Different from existing works that combine object predictions from the different camera views in a final stage, our method fuses information from all the camera views in each layer of computation. To the best of our knowledge, **this is the first attempt to cast multi-camera detection as 3D set-to-set prediction**.

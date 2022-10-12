@@ -8,7 +8,6 @@ categories: papers
 ---
 
 
-## ViP-DeepLab: Learning Visual Perception with Depth-aware Video Panoptic Segmentation
 
 
 ### Contributions:
