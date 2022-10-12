@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ViP-DeepLab  Learning Visual Perception with Depth-aware Video Panoptic Segmentation
+title: ViP-DeepLab&#58;  Learning Visual Perception with Depth-aware Video Panoptic Segmentation
 image: pixiv_2.jpg
 date: 2022-10-10 16:04:20 +0800
 tags: [Computer Vision, 3D Object Detection]
