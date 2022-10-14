@@ -1,0 +1,47 @@
+---
+layout: post
+title: RangeDet&#58; In Defense of Range View for LiDAR-based 3D Object Detection
+image: 93447255_p0_master1200.jpg
+date: 2022-10-14 15:38:00 +0800
+tags: [Computer Vision, 3D Object Detection]
+categories: blogs
+---
+
+
+
+## Core Idea
+**Propose an anchor-free single-stage LiDAR-based 3D object detector – RangeDet.**
+
+<br/>
+
+
+## Background
+
+Advantages and disadvantages of Range-view:
+
+1. The range view is widely adopted in semantic segmentation task, but it is rarely used in object detection task individually.
+2. Organizing the point cloud in range view misses no information.
+3. The compactness also enables fast neighborhood queries based on range image coordinates, while point view methods usually need a time-consuming ball query algorithm to get the neighbors.
+4. The valid detection range of range-view-based detectors can be as far as the sensor’s availability, while we have to set a threshold for the detection range in BEV-based 3D detectors.
+
+
+However, there is still a huge gap between the pure range-view-based method and the BEV-based method. For example, on the validation split of Waymo Open Dataset (WOD), *they are still lower than state-of-the-art methods by a large margin (more than 20 points 3D AP in vehicle class)*.
+
+
+Some facts on the different designs of RV and BEV:
+1. **scale variation**: the challenge of detecting objects with sparse points in BEV is converted to the challenge of scale variation in the range image.
+2. **input 2D output 3D**: unlike in 2D image, though the convolution on range image is conducted on 2D pixel coordinates, while the output is in the 3D space.
+3. **compactness**: the 2D range view is naturally more compact than 3D space, which makes feature extractions in range-image-based detectors more efficient.
+
+Corresponding solutions:
+1. **Range Conditioned Pyramid**
+2. **Meta-Kernel**
+3. **Weighted Non-Maximum Suppression**
+
+<br/>
+
+## Review of Range View Representation
+
+![The illustration of the native range image.](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet-lidar.jpg)
+
+![Waymo Open Dataset: properties of each pixel in the range image.](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet-wod.jpg)

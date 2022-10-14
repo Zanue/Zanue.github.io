@@ -15,5 +15,5 @@ categories: papers
 
 ### Model
 
-<!-- <div align=center><img src=https://github.com/Zanue/Zanue.github.io/raw/main/images/pseudo-lidar.jpg width=80% /></div> -->
-![](https://github.com/Zanue/Zanue.github.io/raw/main/images/pseudo-lidar.jpg){:height="80%" width="80%"}
+<!-- <div align=center><img src=https://github.com/Zanue/Zanue.github.io/raw/main/images/bg_img/pseudo-lidar.jpg width=80% /></div> -->
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/pseudo-lidar.jpg){:height="80%" width="80%"}

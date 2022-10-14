@@ -22,27 +22,27 @@ categories: papers
 
 ### Metrics
 With window size $k$ and class $c$,  $\mathrm{VPQ}:$
-<!-- <div align=center><img src=https://github.com/Zanue/Zanue.github.io/raw/main/images/vpq.jpg width=60%/></div> -->
+<!-- <div align=center><img src=https://github.com/Zanue/Zanue.github.io/raw/main/images/bg_img/vpq.jpg width=60%/></div> -->
 
-![](https://github.com/Zanue/Zanue.github.io/raw/main/images/vpq.jpg){:height="60%" width="60%"}
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/vpq.jpg){:height="60%" width="60%"}
 
 
 Realtionship between $\mathrm{VPQ}$ and $\mathrm{PQ}$:
 
-<!-- <div align=center><img src=https://github.com/Zanue/Zanue.github.io/raw/main/images/vpq2.jpg width=60% /></div> -->
-![](https://github.com/Zanue/Zanue.github.io/raw/main/images/vpq2.jpg){:height="60%" width="60%" text-align:center}
+<!-- <div align=center><img src=https://github.com/Zanue/Zanue.github.io/raw/main/images/bg_img/vpq2.jpg width=60% /></div> -->
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/vpq2.jpg){:height="60%" width="60%" text-align:center}
 
 
 $\mathrm{DVPQ}$:
 
-<!-- <div align=center><img src=https://github.com/Zanue/Zanue.github.io/raw/main/images/dvpq.jpg width=60% /></div> -->
-![](https://github.com/Zanue/Zanue.github.io/raw/main/images/dvpq.jpg){:height="60%" width="60%"}
+<!-- <div align=center><img src=https://github.com/Zanue/Zanue.github.io/raw/main/images/bg_img/dvpq.jpg width=60% /></div> -->
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/dvpq.jpg){:height="60%" width="60%"}
 
 ### Model
 
-<!-- <div align=center><img src=https://github.com/Zanue/Zanue.github.io/raw/main/images/vipdeeplab.jpg width=80% /></div> -->
-![](https://github.com/Zanue/Zanue.github.io/raw/main/images/vipdeeplab.jpg){:height="80%" width="80%"}
+<!-- <div align=center><img src=https://github.com/Zanue/Zanue.github.io/raw/main/images/bg_img/vipdeeplab.jpg width=80% /></div> -->
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/vipdeeplab.jpg){:height="80%" width="80%"}
 
-<!-- <div align=center><img src=https://github.com/Zanue/Zanue.github.io/raw/main/images/vipdeeplab2.jpg width=80% /></div> -->
-![](https://github.com/Zanue/Zanue.github.io/raw/main/images/vipdeeplab2.jpg){:height="80%" width="80%"}
+<!-- <div align=center><img src=https://github.com/Zanue/Zanue.github.io/raw/main/images/bg_img/vipdeeplab2.jpg width=80% /></div> -->
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/vipdeeplab2.jpg){:height="80%" width="80%"}
 
