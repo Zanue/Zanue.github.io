@@ -1,6 +1,10 @@
 ---
+layout: post
 title: RangeDet&#58; In Defense of Range View for LiDAR-based 3D Object Detection
+image: Dana2.jpg
+date: 2022-10-14 15:38:00 +0800
 tags: [Computer Vision, 3D Object Detection]
+categories: papers
 ---
 
 
