@@ -1,7 +1,7 @@
 ---
 layout: post
 title: RangeDet&#58; In Defense of Range View for LiDAR-based 3D Object Detection
-image: 93447255_p0_master1200.jpg
+image: Dana2.jpg
 date: 2022-10-14 15:38:00 +0800
 tags: [Computer Vision, 3D Object Detection]
 categories: papers
@@ -9,8 +9,8 @@ categories: papers
 
 
 
-## Core Idea
-**Propose an anchor-free single-stage LiDAR-based 3D object detector – RangeDet.**
+## Core Novelty
+method is purely based on the range view representation
 
 <br/>
 
@@ -42,10 +42,10 @@ Corresponding solutions:
 
 ## Review of Range View Representation
 
-![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-lidar.jpg){:height="60%" width="60%"}
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-lidar.jpg){:height="40%" width="40%"}
 *The illustration of the native range image.*
 
-![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-wod.jpg){:height="60%" width="60%"}
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-wod.jpg){:height="40%" width="40%"}
 *Waymo Open Dataset: properties of each pixel in the range image.*
 
 
@@ -56,7 +56,7 @@ Corresponding solutions:
 - RCP designate the objects with a similar range to be processed by the same layer instead of purely using the area in FPN.
 
 ### Meta-Kernel Convolution
-![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-metakernel.jpg){:height="60%" width="60%"}
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-metakernel.jpg){:height="80%" width="80%"}
 *The illustration of Meta-Kernel*
 
 1. **For weight acquisition,** denote the positional relationship vector as $\mathbf{h}(\mathbf{p}_0, \mathbf{p}_n)$, the convolution weight $\mathbf{W}_{\mathbf{p}_0}(\mathbf{p}_n)$ is:
@@ -88,7 +88,7 @@ $$
 
 
 ### Architecture
-![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-framework.jpg){:height="60%" width="60%"}
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-framework.jpg){:height="80%" width="80%"}
 *The overall architecture of RangeDet*
 
 - The eight input range image channels include *range, intensity, elongation, x, y, z, azimuth, and inclination*
@@ -101,20 +101,20 @@ $$
   $$
   $\mathrm{VFL}_i$ is the varifocal loss of each point:
 
-  ![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-vfl.jpg){:height="60%" width="60%"}
+  ![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-vfl.jpg){:height="40%" width="40%"}
 - regression loss: <br/>
-  ![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-regloss1.jpg){:height="60%" width="60%"}
-  ![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-regloss2.jpg){:height="60%" width="60%"}
+  ![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-regloss1.jpg){:height="40%" width="40%"}
+  ![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-regloss2.jpg){:height="40%" width="40%"}
 
 
 
 ## Experiments
 
 ### Ablation
-![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-ablation.jpg){:height="60%" width="60%"}
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-ablation.jpg){:height="80%" width="80%"}
 
 ### Compare with SOTA
-![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-sotacomp.jpg){:height="60%" width="60%"}
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-sotacomp.jpg){:height="80%" width="80%"}
 
 
 
