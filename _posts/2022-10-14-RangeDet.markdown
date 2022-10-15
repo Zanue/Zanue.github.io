@@ -59,7 +59,7 @@ Corresponding solutions:
 ![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-metakernel.jpg){:height="80%" width="80%"}  
 *The illustration of Meta-Kernel*
 
-1. **For weight acquisition**, relationship vector is $\mathbf{h}(\mathbf{p}_0, \mathbf{p}_n)$, convolution weight is $\mathbf{W}_{\mathbf{p}_0}(\mathbf{p}_n)$, we have:  
+1. **For weight acquisition**, relationship vector is \mathbf{h}(\mathbf{p_0}, \mathbf{p_n})$, convolution weight is $\mathbf{W}_{\mathbf{p_0}}(\mathbf{p_n})$, we have:  
    
     $$
     \mathbf{W}_{\mathbf{p}_0}(\mathbf{p}_n) = \mathrm{MLP}(\mathbf{h}(\mathbf{p}_0, \mathbf{p}_n))
@@ -105,7 +105,7 @@ $$
   $$
    L_{cls} = \frac{1}{M} \sum_{i} \mathrm{VFL}_i
   $$  
-  
+
   $\mathrm{VFL}_i$ is the varifocal loss of each point:
 
   ![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-vfl.jpg){:height="40%" width="40%"}
