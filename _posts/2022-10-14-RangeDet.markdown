@@ -47,7 +47,7 @@ Corresponding solutions:
 <center style="font-size:14px;color:#C0C0C0;text-decoration:underline">The illustration of the native range image.</center> 
 
 
-![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-wod.jpg){:height="40%" width="40%"}  
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-wod.jpg "Waymo Open Dataset: properties of each pixel in the range image."){:height="40%" width="40%"}  
 *Waymo Open Dataset: properties of each pixel in the range image.*
 
 
