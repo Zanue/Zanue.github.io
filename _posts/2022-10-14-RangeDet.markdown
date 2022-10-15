@@ -4,7 +4,7 @@ title: RangeDet&#58; In Defense of Range View for LiDAR-based 3D Object Detectio
 image: 93447255_p0_master1200.jpg
 date: 2022-10-14 15:38:00 +0800
 tags: [Computer Vision, 3D Object Detection]
-categories: blogs
+categories: papers
 ---
 
 
@@ -42,6 +42,79 @@ Corresponding solutions:
 
 ## Review of Range View Representation
 
-![The illustration of the native range image.](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet-lidar.jpg)
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-lidar.jpg){:height="60%" width="60%"}
+*The illustration of the native range image.*
 
-![Waymo Open Dataset: properties of each pixel in the range image.](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet-wod.jpg)
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-wod.jpg){:height="60%" width="60%"}
+*Waymo Open Dataset: properties of each pixel in the range image.*
+
+
+## Methodology
+
+### Range Conditioned Pyramid
+- In the original FPN, the ground-truth bounding box is assigned based on its area in the 2D image.
+- RCP designate the objects with a similar range to be processed by the same layer instead of purely using the area in FPN.
+
+### Meta-Kernel Convolution
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-metakernel.jpg){:height="60%" width="60%"}
+*The illustration of Meta-Kernel*
+
+1. **For weight acquisition,** denote the positional relationship vector as $\mathbf{h}(\mathbf{p}_0, \mathbf{p}_n)$, the convolution weight $\mathbf{W}_{\mathbf{p}_0}(\mathbf{p}_n)$ is:
+   $$
+   \mathbf{W}_{\mathbf{p}_0}(\mathbf{p}_n) = \mathrm{MLP}(\mathbf{h}(\mathbf{p}_0, \mathbf{p}_n))
+   $$
+2. **For multiplication,** instead of matrix multiplication, simply use element-wise product:
+    $$
+    \mathbf{o}_{\mathbf{p}_0}(\mathbf{p}_n) = \mathbf{W}_{\mathbf{p}_0}(\mathbf{p}_n) \odot \mathbf{F}(\mathbf{p}_0 + \mathbf{p}_n)
+    $$
+3. **For aggregation,** instead of channel-wise summation, concatenate all $\mathbf{o}_{\mathbf{p}_0}(\mathbf{p}_n), \forall \mathbf{p}_n \in \mathcal{G}$ and pass it to a fully-connected layer
+
+Summing it up, the Meta-Kernel can be formulated as:
+$$
+\mathbf{z}(\mathbf{p}_0) = \mathcal{A}(\mathbf{W}_{\mathbf{p}_0}(\mathbf{p}_n) \odot \mathbf{F}(\mathbf{p}_0 + \mathbf{p}_n)), \forall \mathbf{p}_n \in \mathcal{G}
+$$
+
+## Weighted Non-Maximum Suppression
+1. filter out the proposals whose scores are less than a predefined threshold 0.5
+2. For the current top-rank proposal $\mathbf{b}_0$, find the proposals whose IoUs with $\mathbf{b}_0$ are higher than 0.5
+3. The output bounding box for $\mathbf{b}_0$ is a weighted average of these proposals, which can be described as:
+   $$
+   \hat{\mathbf{b}}_0 = \frac{\sum_k \mathbb{I}(\mathrm{IoU}(\mathbf{b}_0, \mathbf{b}_k) > t) s_k \mathbf{b}_k}{\sum_k \mathbb{I}(\mathrm{IoU}(\mathbf{b}_0, \mathbf{b}_k) > t) s_k}
+   $$
+   where $\mathbf{b}_k and $s_k denote other proposals and corresponding scores. $t$ is the IoU threshold, which is 0.5. $\mathbb{I}$(·) is the indicator function.
+
+## Data Augmentation in Range View
+*Random global rotation*, *Random global flip* and *Copy-Paste*
+
+
+### Architecture
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-framework.jpg){:height="60%" width="60%"}
+*The overall architecture of RangeDet*
+
+- The eight input range image channels include *range, intensity, elongation, x, y, z, azimuth, and inclination*
+- Meta-Kernel is *(only?)* placed in the second BasicBlock
+- In WOD, the range of a point varies from 0m to 80m. Divide [0, 80] to 3 intervals: [0, 15), [15, 30), [30, 80]
+- For point $i$, regard its azimuth direction as its local x-axis which is the same as in LaserNet
+- classification loss:
+  $$
+   L_{cls} = \frac{1}{M} \sum_{i} \mathrm{VFL}_i
+  $$
+  $\mathrm{VFL}_i$ is the varifocal loss of each point:
+
+  ![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-vfl.jpg){:height="60%" width="60%"}
+- regression loss: <br/>
+  ![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-regloss1.jpg){:height="60%" width="60%"}
+  ![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-regloss2.jpg){:height="60%" width="60%"}
+
+
+
+## Experiments
+
+### Ablation
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-ablation.jpg){:height="60%" width="60%"}
+
+### Compare with SOTA
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-sotacomp.jpg){:height="60%" width="60%"}
+
+
+
