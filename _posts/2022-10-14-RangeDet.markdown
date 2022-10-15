@@ -59,17 +59,17 @@ Corresponding solutions:
 ![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-metakernel.jpg){:height="80%" width="80%"}  
 *The illustration of Meta-Kernel*
 
-1. **For weight acquisition,** denote the positional relationship vector as $\mathbf{h}(\mathbf{p}_0, \mathbf{p}_n)$, the convolution weight $\mathbf{W}_{\mathbf{p}_0}(\mathbf{p}_n)$ is:
+1. **For weight acquisition,** denote the positional relationship vector as $\mathbf{h}(\mathbf{p}_0, \mathbf{p}_n)$, the convolution weight $\mathbf{W}_{\mathbf{p}_0}(\mathbf{p}_n)$ is:  
    $$
    \mathbf{W}_{\mathbf{p}_0}(\mathbf{p}_n) = \mathrm{MLP}(\mathbf{h}(\mathbf{p}_0, \mathbf{p}_n))
    $$
-2. **For multiplication,** instead of matrix multiplication, simply use element-wise product:
+2. **For multiplication,** instead of matrix multiplication, simply use element-wise product:  
     $$
     \mathbf{o}_{\mathbf{p}_0}(\mathbf{p}_n) = \mathbf{W}_{\mathbf{p}_0}(\mathbf{p}_n) \odot \mathbf{F}(\mathbf{p}_0 + \mathbf{p}_n)
     $$
 3. **For aggregation,** instead of channel-wise summation, concatenate all $\mathbf{o}_{\mathbf{p}_0}(\mathbf{p}_n), \forall \mathbf{p}_n \in \mathcal{G}$ and pass it to a fully-connected layer
 
-Summing it up, the Meta-Kernel can be formulated as:
+Summing it up, the Meta-Kernel can be formulated as: <br/>
 $$
 \mathbf{z}(\mathbf{p}_0) = \mathcal{A}(\mathbf{W}_{\mathbf{p}_0}(\mathbf{p}_n) \odot \mathbf{F}(\mathbf{p}_0 + \mathbf{p}_n)), \forall \mathbf{p}_n \in \mathcal{G}
 $$
@@ -77,7 +77,7 @@ $$
 ## Weighted Non-Maximum Suppression
 1. filter out the proposals whose scores are less than a predefined threshold 0.5
 2. For the current top-rank proposal $\mathbf{b}_0$, find the proposals whose IoUs with $\mathbf{b}_0$ are higher than 0.5
-3. The output bounding box for $\mathbf{b}_0$ is a weighted average of these proposals, which can be described as:
+3. The output bounding box for $\mathbf{b}_0$ is a weighted average of these proposals, which can be described as:  
    $$
    \hat{\mathbf{b}}_0 = \frac{\sum_k \mathbb{I}(\mathrm{IoU}(\mathbf{b}_0, \mathbf{b}_k) > t) s_k \mathbf{b}_k}{\sum_k \mathbb{I}(\mathrm{IoU}(\mathbf{b}_0, \mathbf{b}_k) > t) s_k}
    $$
@@ -95,7 +95,7 @@ $$
 - Meta-Kernel is *(only?)* placed in the second BasicBlock
 - In WOD, the range of a point varies from 0m to 80m. Divide [0, 80] to 3 intervals: [0, 15), [15, 30), [30, 80]
 - For point $i$, regard its azimuth direction as its local x-axis which is the same as in LaserNet
-- classification loss:
+- classification loss:  
   $$
    L_{cls} = \frac{1}{M} \sum_{i} \mathrm{VFL}_i
   $$
@@ -103,7 +103,8 @@ $$
 
   ![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-vfl.jpg){:height="40%" width="40%"}
 - regression loss: <br/>
-  ![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-regloss1.jpg){:height="40%" width="40%"}
+  ![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-regloss1.jpg){:height="40%" width="40%"}  
+  
   ![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-regloss2.jpg){:height="40%" width="40%"}
 
 
