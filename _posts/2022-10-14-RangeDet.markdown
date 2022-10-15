@@ -42,10 +42,10 @@ Corresponding solutions:
 
 ## Review of Range View Representation
 
-![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-lidar.jpg){:height="40%" width="40%"}
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-lidar.jpg){:height="40%" width="40%"}  
 *The illustration of the native range image.*
 
-![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-wod.jpg){:height="40%" width="40%"}
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-wod.jpg){:height="40%" width="40%"}  
 *Waymo Open Dataset: properties of each pixel in the range image.*
 
 
@@ -56,7 +56,7 @@ Corresponding solutions:
 - RCP designate the objects with a similar range to be processed by the same layer instead of purely using the area in FPN.
 
 ### Meta-Kernel Convolution
-![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-metakernel.jpg){:height="80%" width="80%"}
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-metakernel.jpg){:height="80%" width="80%"}  
 *The illustration of Meta-Kernel*
 
 1. **For weight acquisition,** denote the positional relationship vector as $\mathbf{h}(\mathbf{p}_0, \mathbf{p}_n)$, the convolution weight $\mathbf{W}_{\mathbf{p}_0}(\mathbf{p}_n)$ is:
@@ -88,7 +88,7 @@ $$
 
 
 ### Architecture
-![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-framework.jpg){:height="80%" width="80%"}
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-framework.jpg){:height="80%" width="80%"}  
 *The overall architecture of RangeDet*
 
 - The eight input range image channels include *range, intensity, elongation, x, y, z, azimuth, and inclination*
