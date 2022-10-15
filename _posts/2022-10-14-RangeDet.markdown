@@ -10,7 +10,7 @@ categories: papers
 
 
 ## Core Novelty
-method is purely based on the range view representation
+method is purely based on the range view representation.
 
 <br/>
 
@@ -44,11 +44,12 @@ Corresponding solutions:
 
 ![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-lidar.jpg){:height="40%" width="40%"}  
 <!-- *The illustration of the native range image.* -->
-<center style="font-size:14px;color:#C0C0C0;text-decoration:underline">The illustration of the native range image.</center> 
+<center style="font-size:14px">The illustration of the native range image.</center> 
 
 
-![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-wod.jpg "Waymo Open Dataset: properties of each pixel in the range image."){:height="40%" width="40%"}  
-*Waymo Open Dataset: properties of each pixel in the range image.*
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-wod.jpg){:height="40%" width="40%"}  
+<center style="font-size:14px">Waymo Open Dataset: properties of each pixel in the range image.</center> 
+<!-- *Waymo Open Dataset: properties of each pixel in the range image.* -->
 
 
 ## Methodology
@@ -59,7 +60,8 @@ Corresponding solutions:
 
 ### Meta-Kernel Convolution
 ![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-metakernel.jpg){:height="80%" width="80%"}  
-*The illustration of Meta-Kernel*
+<!-- *The illustration of Meta-Kernel* -->
+<center style="font-size:14px">The illustration of Meta-Kernel.</center> 
 
 1. **For weight acquisition**, relationship vector is $\mathbf{h}(\mathbf{p} _0, \mathbf{p} _n)$, convolution weight is $\mathbf{W} _{\mathbf{p} _0}(\mathbf{p} _n)$, we have:  
    
@@ -98,7 +100,8 @@ $$
 
 ### Architecture
 ![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-framework.jpg){:height="80%" width="80%"}  
-*The overall architecture of RangeDet*
+<!-- *The overall architecture of RangeDet* -->
+<center style="font-size:14px">The overall architecture of RangeDet.</center> 
 
 - The eight input range image channels include *range, intensity, elongation, x, y, z, azimuth, and inclination*
 - Meta-Kernel is *(only?)* placed in the second BasicBlock
