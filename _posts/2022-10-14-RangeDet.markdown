@@ -80,8 +80,8 @@ $$
 3. The output bounding box for $\mathbf{b}_0$ is a weighted average of these proposals, which can be described as:  
    $$
    \hat{\mathbf{b}}_0 = \frac{\sum_k \mathbb{I}(\mathrm{IoU}(\mathbf{b}_0, \mathbf{b}_k) > t) s_k \mathbf{b}_k}{\sum_k \mathbb{I}(\mathrm{IoU}(\mathbf{b}_0, \mathbf{b}_k) > t) s_k}
-   $$
-   where $\mathbf{b}_k and $s_k denote other proposals and corresponding scores. $t$ is the IoU threshold, which is 0.5. $\mathbb{I}$(·) is the indicator function.
+   $$  
+   where $\mathbf{b}_k$ and $s_k$ denote other proposals and corresponding scores. $t$ is the IoU threshold, which is 0.5. $\mathbb{I}$(·) is the indicator function.
 
 ## Data Augmentation in Range View
 *Random global rotation*, *Random global flip* and *Copy-Paste*
@@ -104,7 +104,7 @@ $$
   ![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-vfl.jpg){:height="40%" width="40%"}
 - regression loss: <br/>
   ![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-regloss1.jpg){:height="40%" width="40%"}  
-  
+
   ![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-regloss2.jpg){:height="40%" width="40%"}
 
 
