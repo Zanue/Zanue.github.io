@@ -59,10 +59,10 @@ Corresponding solutions:
 ![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-metakernel.jpg){:height="80%" width="80%"}  
 *The illustration of Meta-Kernel*
 
-1. **For weight acquisition**, denote the positional relationship vector as $\mathbf{h}(\mathbf{p}_0, \mathbf{p}_n)$ , the convolution weight $\mathbf{W}_{\mathbf{p}_0}(\mathbf{p}_n)$ is:  
-   $$
-   \mathbf{W}_{\mathbf{p}_0}(\mathbf{p}_n) = \mathrm{MLP}(\mathbf{h}(\mathbf{p}_0, \mathbf{p}_n))
-   $$  
+1. **For weight acquisition**, denote the positional relationship vector as $\mathbf{h}(\mathbf{p}_0, \mathbf{p}_n)$ , the convolution weight $\mathbf{W}_{\mathbf{p}_0}(\mathbf{p}_n)$ is: <br/>
+    $$
+    \mathbf{W}_{\mathbf{p}_0}(\mathbf{p}_n) = \mathrm{MLP}(\mathbf{h}(\mathbf{p}_0, \mathbf{p}_n))
+    $$  
 2. **For multiplication**, instead of matrix multiplication, simply use element-wise product:  
     $$
     \mathbf{o}_{\mathbf{p}_0}(\mathbf{p}_n) = \mathbf{W}_{\mathbf{p}_0}(\mathbf{p}_n) \odot \mathbf{F}(\mathbf{p}_0 + \mathbf{p}_n)
