@@ -42,6 +42,10 @@ Corresponding solutions:
 
 ## Review of Range View Representation
 
+{% figure caption:"*Markdown* caption" %}
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-lidar.jpg){:height="40%" width="40%"}  
+{% endfigure %}
+
 ![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-lidar.jpg){:height="40%" width="40%"}  
 *The illustration of the native range image.*
 
@@ -59,7 +63,7 @@ Corresponding solutions:
 ![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-metakernel.jpg){:height="80%" width="80%"}  
 *The illustration of Meta-Kernel*
 
-1. **For weight acquisition**, relationship vector is $\mathbf{h}(\mathbf{p}_0, \mathbf{p}_n)$, convolution weight is $\mathbf{W}_{\mathbf{p}_0}(\mathbf{p}_n)$, we have:  
+1. **For weight acquisition**, relationship vector is $\mathbf{h}(\mathbf{p} _0, \mathbf{p} _n)$, convolution weight is $\mathbf{W}_{\mathbf{p} _0}(\mathbf{p} _n)$, we have:  
    
     $$
     \mathbf{W}_{\mathbf{p}_0}(\mathbf{p}_n) = \mathrm{MLP}(\mathbf{h}(\mathbf{p}_0, \mathbf{p}_n))
@@ -73,9 +77,11 @@ Corresponding solutions:
 
 Summing it up, the Meta-Kernel can be formulated as:  
 
+<p>
 $$
 \mathbf{z}(\mathbf{p}_0) = \mathcal{A}(\mathbf{W}_{\mathbf{p}_0}(\mathbf{p}_n) \odot \mathbf{F}(\mathbf{p}_0 + \mathbf{p}_n)), \forall \mathbf{p}_n \in \mathcal{G}
 $$
+</p>
 
 ## Weighted Non-Maximum Suppression
 1. filter out the proposals whose scores are less than a predefined threshold 0.5
