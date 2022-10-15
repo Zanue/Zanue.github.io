@@ -42,10 +42,6 @@ Corresponding solutions:
 
 ## Review of Range View Representation
 
-{% figure caption:"*Markdown* caption" %}
-![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-lidar.jpg){:height="40%" width="40%"}  
-{% endfigure %}
-
 ![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/rangedet/rangedet-lidar.jpg){:height="40%" width="40%"}  
 *The illustration of the native range image.*
 
