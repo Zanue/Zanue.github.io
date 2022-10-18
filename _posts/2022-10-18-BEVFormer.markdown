@@ -10,14 +10,14 @@ categories: papers
 ## TL;DR
 BEVFormer = **Predefined Grid-shaped BEV Queries** + **BEV Temporal Self-Attention** + **BEV Spatial Cross-Attention** + Det & Seg Heads.
 
-
+<br/>
 ## Motivation
 - 3D object detection task requires strong BEV features to support accurate 3D bounding box prediction, but generating BEV from the 2D planes is ill-posed;
 - BEV methods based on depth information is sensitive to the accuracy of depth values or the depth distributions.
 
 Therefore, authors are motivated to design *a BEV generating method that does not rely on depth information and can learn BEV features adaptively rather than strictly rely on 3D prior*.
 
-
+<br/>
 ## Architecture
 
 ![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/bevformer/bevformer-framework.jpg){:height="80%" width="80%"}  
@@ -37,7 +37,7 @@ Spatial cross-attention is based on *deformable attention*, where *each BEV quer
 **Deformable Attention:**
 
 $$
-\mathrm{DeformAttn}(q, p, x) = \sum _{i=1}^{N _{head}} \mathcal{W} _i \sum _{j=1}^{N _{key}} \mathcal{A} _{ij} \cdot \mathcal{W}' _{i} x(p + \Delta p _{ij}), 
+\mathrm{DeformAttn}(q, p, x) = \sum _{i=1}^{N _{head}} \mathcal{W} _i \sum _{j=1}^{N _{key}} \mathcal{A} _{ij} \cdot \mathcal{W}' _{i} x(p + \Delta p _{ij})
 $$  
 
 where $q, p, x$ represent the query, reference point and input features, respectively. $\mathcal{A} _{ij} \in [0, 1]$ is the predicted attention weight. $\Delta p _{ij}$ are the predicted offsets to the reference point $p$.
@@ -46,7 +46,7 @@ where $q, p, x$ represent the query, reference point and input features, respect
 **Spatial Cross-Attention:**
 
 $$
-\mathrm{SCA}(Q _p, F _t) = 1 / |\mathcal{V} _{hit}| \cdot \sum _{i \in \mathcal{V} _{hit}} \sum_{j=1}^{N _{ref}} \mathrm{DeformAttn}(Q _p, \mathcal{P}(p, i, j), F _t^i),
+\mathrm{SCA}(Q _p, F _t) = 1 / \mathcal{V} _{hit} \cdot \sum _{i \in \mathcal{V} _{hit}} \sum_{j=1}^{N _{ref}} \mathrm{DeformAttn}(Q _p, \mathcal{P}(p, i, j), F _t^i),
 $$  
 
 1. Lift each query on the BEV plane to a pillar-like query, sample $N _{ref}$ 3D reference points from the pillar, and then project these points to 2D views;
@@ -59,7 +59,7 @@ For each query $Q _p$, a pillar of 3D reference points are $(x', y', z') _{j=1}^
 ### Temporal Self-Attention
 
 $$
-\mathrm{TSA}(Q _p, \{Q, B'_{t-1} \}) = \sum _{V \in \{Q, B'_{t-1} \}} \mathrm{DeformAttn}(Q _p, p, V)
+\mathrm{TSA}(Q _p, \{Q, B'_{t-1} \}) = \sum _{V \in \{Q, B' _{t-1} \}} \mathrm{DeformAttn}(Q _p, p, V)
 $$  
 
 
@@ -73,21 +73,21 @@ $$
 - **For 3D object detection,** design an end-to-end 3D detection head based on the 2D detector Deformable DETR[1]. The modifications include using single-scale BEV features $B _t$ as the input of the decoder, predicting 3D bounding boxes and velocity rather than 2D bounding boxes, and only using $L _1$ loss to supervise 3D bounding box regression.
 - **For map segmentation,** design a map segmentation head based on a 2D segmentation method Panoptic SegFormer[2].
 
-
+<br/>
 ## Experiments
 
 ### Compare with SOTA
-![](../images/blog_img/bevformer/bevformer-table1.jpg){:height="80%" width="80%"}  
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/bevformer/bevformer-table1.jpg){:height="80%" width="80%"}  
 
-![](../images/blog_img/bevformer/bevformer-table4.jpg){:height="80%" width="80%"}  
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/bevformer/bevformer-table4.jpg){:height="80%" width="80%"}  
 
 ### Ablation
 
-![](../images/blog_img/bevformer/bevformer-table5.jpg){:height="80%" width="80%"}  
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/bevformer/bevformer-table5.jpg){:height="80%" width="80%"}  
 
-![](../images/blog_img/bevformer/bevformer-fig3.jpg){:height="80%" width="80%"}  
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/bevformer/bevformer-fig3.jpg){:height="80%" width="80%"}  
 
-![](../images/blog_img/bevformer/bevformer-table6.jpg){:height="80%" width="80%"}  
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/bevformer/bevformer-table6.jpg){:height="80%" width="80%"}  
 
 
 ## References
