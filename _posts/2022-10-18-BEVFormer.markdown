@@ -57,7 +57,7 @@ $$
 2. Regard these 2D points as the reference points of the query $Q _p$ and sample the features from the hit views $\mathcal{V} _{hit}$ around these reference points;
 3. Perform a weighted sum of the sampled features.
 
-For each query $Q _p$, a pillar of 3D reference points are $(x', y', z') _{j=1}^{N _{ref}}$, where $\{z' _j \} _{j=1}^{N _{ref}}$ are a set of anchor heights.
+For each query $Q _p$, a pillar of 3D reference points are $(x', y', z') _{j=1}^{N _{ref}}$, where $(z' _j ) _{j=1}^{N _{ref}}$ are a set of anchor heights.
 
 
 ### Temporal Self-Attention
