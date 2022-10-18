@@ -46,7 +46,7 @@ where $q, p, x$ represent the query, reference point and input features, respect
 **Spatial Cross-Attention:**
 
 $$
-\mathrm{SCA}(Q _p, F _t) = 1 / \mathcal{V} _{hit} \cdot \sum _{i \in \mathcal{V} _{hit}} \sum_{j=1}^{N _{ref}} \mathrm{DeformAttn}(Q _p, \mathcal{P}(p, i, j), F _t^i),
+\mathrm{SCA}(Q _p, F _t) = \frac{1}{\Vert \mathcal{V} _{hit} \Vert} \sum _{i \in \mathcal{V} _{hit}} \sum _{j=1}^{N _{ref}} \mathrm{DeformAttn}(Q _p, \mathcal{P}(p, i, j), F _t^i),
 $$  
 
 1. Lift each query on the BEV plane to a pillar-like query, sample $N _{ref}$ 3D reference points from the pillar, and then project these points to 2D views;
@@ -59,7 +59,7 @@ For each query $Q _p$, a pillar of 3D reference points are $(x', y', z') _{j=1}^
 ### Temporal Self-Attention
 
 $$
-\mathrm{TSA}(Q _p, \{Q, B'_{t-1} \}) = \sum _{V \in \{Q, B' _{t-1} \}} \mathrm{DeformAttn}(Q _p, p, V)
+\mathrm{TSA}(Q _p, \{Q, B' _{t-1} \}) = \sum _{V \in \{Q, B' _{t-1} \}} \mathrm{DeformAttn}(Q _p, p, V)
 $$  
 
 
