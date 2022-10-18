@@ -37,7 +37,7 @@ Spatial cross-attention is based on *deformable attention*, where *each BEV quer
 **Deformable Attention:**
 
 $$
-\mathrm{DeformAttn}(q, p, x) = \sum _{i=1}^{N_{head}} \mathcal{W} _i \sum _{j=1}^{N _{key}} \mathcal{A} _{ij} \cdot \mathcal{W}' _{i} x(p + \Delta p _{ij}), 
+\mathrm{DeformAttn}(q, p, x) = \sum_{i=1}^{N_{head}} \mathcal{W}_i \sum_{j=1}^{N_{key}} \mathcal{A}_{ij} \cdot \mathcal{W}'_{i} x(p + \Delta p_{ij}), 
 $$  
 
 where $q, p, x$ represent the query, reference point and input features, respectively. $\mathcal{A} _{ij} \in [0, 1]$ is the predicted attention weight. $\Delta p _{ij}$ are the predicted offsets to the reference point $p$.
@@ -46,7 +46,7 @@ where $q, p, x$ represent the query, reference point and input features, respect
 **Spatial Cross-Attention:**
 
 $$
-\mathrm{SCA}(Q _p, F _t) = \frac{1}{|\mathcal{V} _{hit}|} \sum _{i \in \mathcal{V} _{hit}} \sum _{j=1}^{N_{ref}} \mathrm{DeformAttn}(Q _p, \mathcal{P}(p, i, j), F _t^i),
+\mathrm{SCA}(Q_p, F_t) = \frac{1}{|\mathcal{V}_{hit}|} \sum_{i \in \mathcal{V}_{hit}} \sum_{j=1}^{N_{ref}} \mathrm{DeformAttn}(Q_p, \mathcal{P}(p, i, j), F_t^i),
 $$  
 
 1. Lift each query on the BEV plane to a pillar-like query, sample $N _{ref}$ 3D reference points from the pillar, and then project these points to 2D views;
@@ -59,7 +59,7 @@ For each query $Q _p$, a pillar of 3D reference points are $(x', y', z') _{j=1}^
 ### Temporal Self-Attention
 
 $$
-\mathrm{TSA}(Q _p, \{Q, B' _{t-1} \}) = \sum _{V \in \{Q, B' _{t-1} \}} \mathrm{DeformAttn}(Q _p, p, V)
+\mathrm{TSA}(Q_p, \{Q, B'_{t-1} \}) = \sum_{V \in \{Q, B'_{t-1} \}} \mathrm{DeformAttn}(Q_p, p, V)
 $$  
 
 
@@ -91,5 +91,6 @@ $$
 
 
 ## References
-[1] Zhu, X., Su, W., Lu, L., Li, B., Wang, X., Dai, J.: Deformable detr: Deformable transformers for end-to-end object detection. In: International Conference on Learning Representations (2020)
+[1] Zhu, X., Su, W., Lu, L., Li, B., Wang, X., Dai, J.: Deformable detr: Deformable transformers for end-to-end object detection. In: International Conference on Learning Representations (2020)  
+
 [2] Li, Z., Wang, W., Xie, E., Yu, Z., Anandkumar, A., Alvarez, J.M., Lu, T., Luo, P.: Panop- tic segformer: Delving deeper into panoptic segmentation with transformers. arXiv preprint arXiv:2109.03814 (2021)
