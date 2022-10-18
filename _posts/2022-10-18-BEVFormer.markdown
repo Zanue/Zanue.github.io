@@ -35,13 +35,16 @@ Each grid cell in the BEV plane corresponds to a real-world size of $s$ meters. 
 Spatial cross-attention is based on *deformable attention*, where *each BEV query $Q _p$ only interacts with its regions of interest across camera views*.
 
 **Deformable Attention:**
+
 $$
 \mathrm{DeformAttn}(q, p, x) = \sum_ {i=1}^{N_{head}} \mathcal{W}_ i \sum_ {j=1}^{N_{key}} \mathcal{A}_ {ij} \cdot \mathcal{W}'_ {i} x(p + \Delta p_ {ij}), 
 $$
+
 where $q, p, x$ represent the query, reference point and input features, respectively. $\mathcal{A}_ {ij} \in [0, 1]$ is the predicted attention weight. $\Delta p_ {ij}$ are the predicted offsets to the reference point $p$.
 
 
 **Spatial Cross-Attention:**
+
 $$
 \mathrm{SCA}(Q_ p, F_ t) = \frac{1}{|\mathcal{V}_ {hit}|} \sum_ {i \in \mathcal{V}_ {hit}} \sum_ {j=1}^{N_{ref}} \mathrm{DeformAttn}(Q_ p, \mathcal{P}(p, i, j), F_ t^i),
 $$
@@ -54,6 +57,7 @@ For each query $Q_ p$, a pillar of 3D reference points are $(x', y', z')_ {j=1}^
 
 
 ### Temporal Self-Attention
+
 $$
 \mathrm{TSA}(Q_ p, \{Q, B'_ {t-1} \}) = \sum_ {V \in \{Q, B'_ {t-1} \}} \mathrm{DeformAttn}(Q_ p, p, V)
 $$
