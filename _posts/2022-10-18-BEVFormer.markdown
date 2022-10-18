@@ -37,40 +37,40 @@ Spatial cross-attention is based on *deformable attention*, where *each BEV quer
 **Deformable Attention:**
 
 $$
-\mathrm{DeformAttn}(q, p, x) = \sum_ {i=1}^{N_{head}} \mathcal{W}_ i \sum_ {j=1}^{N_{key}} \mathcal{A}_ {ij} \cdot \mathcal{W}'_ {i} x(p + \Delta p_ {ij}), 
-$$
+\mathrm{DeformAttn}(q, p, x) = \sum _{i=1}^{N_{head}} \mathcal{W} _i \sum _{j=1}^{N _{key}} \mathcal{A} _{ij} \cdot \mathcal{W}' _{i} x(p + \Delta p _{ij}), 
+$$  
 
-where $q, p, x$ represent the query, reference point and input features, respectively. $\mathcal{A}_ {ij} \in [0, 1]$ is the predicted attention weight. $\Delta p_ {ij}$ are the predicted offsets to the reference point $p$.
+where $q, p, x$ represent the query, reference point and input features, respectively. $\mathcal{A} _{ij} \in [0, 1]$ is the predicted attention weight. $\Delta p _{ij}$ are the predicted offsets to the reference point $p$.
 
 
 **Spatial Cross-Attention:**
 
 $$
-\mathrm{SCA}(Q_ p, F_ t) = \frac{1}{|\mathcal{V}_ {hit}|} \sum_ {i \in \mathcal{V}_ {hit}} \sum_ {j=1}^{N_{ref}} \mathrm{DeformAttn}(Q_ p, \mathcal{P}(p, i, j), F_ t^i),
-$$
+\mathrm{SCA}(Q _p, F _t) = \frac{1}{|\mathcal{V} _{hit}|} \sum _{i \in \mathcal{V} _{hit}} \sum _{j=1}^{N_{ref}} \mathrm{DeformAttn}(Q _p, \mathcal{P}(p, i, j), F _t^i),
+$$  
 
-1. Lift each query on the BEV plane to a pillar-like query, sample $N_ {ref}$ 3D reference points from the pillar, and then project these points to 2D views;
-2. Regard these 2D points as the reference points of the query $Q_ p$ and sample the features from the hit views $\mathcal{V}_ {hit}$ around these reference points;
+1. Lift each query on the BEV plane to a pillar-like query, sample $N _{ref}$ 3D reference points from the pillar, and then project these points to 2D views;
+2. Regard these 2D points as the reference points of the query $Q _p$ and sample the features from the hit views $\mathcal{V} _{hit}$ around these reference points;
 3. Perform a weighted sum of the sampled features.
 
-For each query $Q_ p$, a pillar of 3D reference points are $(x', y', z')_ {j=1}^{N_{ref}}$, where $\{z'_ j \}_ {j=1}^{N_{ref}}$ are a set of anchor heights.
+For each query $Q _p$, a pillar of 3D reference points are $(x', y', z') _{j=1}^{N_{ref}}$, where $\{z' _j \} _{j=1}^{N_{ref}}$ are a set of anchor heights.
 
 
 ### Temporal Self-Attention
 
 $$
-\mathrm{TSA}(Q_ p, \{Q, B'_ {t-1} \}) = \sum_ {V \in \{Q, B'_ {t-1} \}} \mathrm{DeformAttn}(Q_ p, p, V)
-$$
+\mathrm{TSA}(Q _p, \{Q, B' _{t-1} \}) = \sum _{V \in \{Q, B' _{t-1} \}} \mathrm{DeformAttn}(Q _p, p, V)
+$$  
 
 
-1. Align $B_ {t−1}$ to $Q$ according to ego-motion to make the features at the same grid correspond to the same real-world location, which is denoted as $B'_ {t-1}$;
-2. Different from the vanilla deformable attention, the offsets $\Delta p$ in temporal self-attention are predicted by the concatenation of $Q$ and $B'_ {t-1}$.
+1. Align $B _{t−1}$ to $Q$ according to ego-motion to make the features at the same grid correspond to the same real-world location, which is denoted as $B' _{t-1}$;
+2. Different from the vanilla deformable attention, the offsets $\Delta p$ in temporal self-attention are predicted by the concatenation of $Q$ and $B' _{t-1}$.
 
 **Advantages**: infer the velocity of moving objects and detect highly occluded objects from static images.
 
 
 ### Applications of BEV Features
-- **For 3D object detection,** design an end-to-end 3D detection head based on the 2D detector Deformable DETR[1]. The modifications include using single-scale BEV features $B_ t$ as the input of the decoder, predicting 3D bounding boxes and velocity rather than 2D bounding boxes, and only using $L_ 1$ loss to supervise 3D bounding box regression.
+- **For 3D object detection,** design an end-to-end 3D detection head based on the 2D detector Deformable DETR[1]. The modifications include using single-scale BEV features $B _t$ as the input of the decoder, predicting 3D bounding boxes and velocity rather than 2D bounding boxes, and only using $L _1$ loss to supervise 3D bounding box regression.
 - **For map segmentation,** design a map segmentation head based on a 2D segmentation method Panoptic SegFormer[2].
 
 
