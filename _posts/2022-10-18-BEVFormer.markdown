@@ -36,18 +36,22 @@ Spatial cross-attention is based on *deformable attention*, where *each BEV quer
 
 **Deformable Attention:**
 
+<p>
 $$
 \mathrm{DeformAttn}(q, p, x) = \sum _{i=1}^{N _{head}} \mathcal{W} _i \sum _{j=1}^{N _{key}} \mathcal{A} _{ij} \cdot \mathcal{W}' _{i} x(p + \Delta p _{ij})
 $$  
+</p>
 
 where $q, p, x$ represent the query, reference point and input features, respectively. $\mathcal{A} _{ij} \in [0, 1]$ is the predicted attention weight. $\Delta p _{ij}$ are the predicted offsets to the reference point $p$.
 
 
 **Spatial Cross-Attention:**
 
+<p>
 $$
 \mathrm{SCA}(Q _p, F _t) = \frac{1}{\Vert \mathcal{V} _{hit} \Vert} \sum _{i \in \mathcal{V} _{hit}} \sum _{j=1}^{N _{ref}} \mathrm{DeformAttn}(Q _p, \mathcal{P}(p, i, j), F _t^i),
 $$  
+</p>
 
 1. Lift each query on the BEV plane to a pillar-like query, sample $N _{ref}$ 3D reference points from the pillar, and then project these points to 2D views;
 2. Regard these 2D points as the reference points of the query $Q _p$ and sample the features from the hit views $\mathcal{V} _{hit}$ around these reference points;
@@ -58,10 +62,11 @@ For each query $Q _p$, a pillar of 3D reference points are $(x', y', z') _{j=1}^
 
 ### Temporal Self-Attention
 
+<p>
 $$
 \mathrm{TSA}(Q _p, \{Q, B' _{t-1} \}) = \sum _{V \in \{Q, B' _{t-1} \}} \mathrm{DeformAttn}(Q _p, p, V)
 $$  
-
+</p>
 
 1. Align $B _{t−1}$ to $Q$ according to ego-motion to make the features at the same grid correspond to the same real-world location, which is denoted as $B' _{t-1}$;
 2. Different from the vanilla deformable attention, the offsets $\Delta p$ in temporal self-attention are predicted by the concatenation of $Q$ and $B' _{t-1}$.
