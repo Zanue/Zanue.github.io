@@ -11,6 +11,7 @@ categories: papers
 BEVFormer = **Predefined Grid-shaped BEV Queries** + **BEV Temporal Self-Attention** + **BEV Spatial Cross-Attention** + Det & Seg Heads.
 
 <br/>
+
 ## Motivation
 - 3D object detection task requires strong BEV features to support accurate 3D bounding box prediction, but generating BEV from the 2D planes is ill-posed;
 - BEV methods based on depth information is sensitive to the accuracy of depth values or the depth distributions.
@@ -18,12 +19,11 @@ BEVFormer = **Predefined Grid-shaped BEV Queries** + **BEV Temporal Self-Attenti
 Therefore, authors are motivated to design *a BEV generating method that does not rely on depth information and can learn BEV features adaptively rather than strictly rely on 3D prior*.
 
 <br/>
+
 ## Architecture
 
 ![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/bevformer/bevformer-framework.jpg){:height="80%" width="80%"}  
 <center style="font-size:14px">Figure 1: Overall architecture of BEVFormer.</center> 
-
-
 
 
 ### BEV Queries
@@ -79,20 +79,21 @@ $$
 - **For map segmentation,** design a map segmentation head based on a 2D segmentation method Panoptic SegFormer[2].
 
 <br/>
+
 ## Experiments
 
 ### Compare with SOTA
-![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/bevformer/bevformer-table1.jpg){:height="80%" width="80%"}  
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/bevformer/bevformer-table1.jpg){:height="60%" width="60%"}  
 
-![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/bevformer/bevformer-table4.jpg){:height="80%" width="80%"}  
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/bevformer/bevformer-table4.jpg){:height="60%" width="60%"}  
 
 ### Ablation
 
-![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/bevformer/bevformer-table5.jpg){:height="80%" width="80%"}  
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/bevformer/bevformer-table5.jpg){:height="60%" width="60%"}  
 
-![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/bevformer/bevformer-fig3.jpg){:height="80%" width="80%"}  
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/bevformer/bevformer-fig3.jpg){:height="60%" width="60%"}  
 
-![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/bevformer/bevformer-table6.jpg){:height="80%" width="80%"}  
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/bevformer/bevformer-table6.jpg){:height="60%" width="60%"}  
 
 
 ## References
