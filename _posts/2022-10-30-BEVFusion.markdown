@@ -2,7 +2,7 @@
 layout: post
 title: BEVFusion&#58; Multi-Task Multi-Sensor Fusion with Unified Bird’s-Eye View Representation
 image: 101003773_p0_master1200.jpg
-date: 2022-10-30 21:52:00 +0800
+date: 2022-11-14 20:21:00 +0800
 tags: [Computer Vision, 3D Object Detection]
 categories: papers
 ---
