@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Depth-aware CNN for RGB-D Segmentation
-image: 101003773_p0_master1200.jpg
-date: 2022-11-16 20:21:00 +0800
+image: toma.jpg
+date: 2022-11-16 15:50:00 +0800
 tags: [Computer Vision, RGBD, Convolution]
 categories: papers
 ---
