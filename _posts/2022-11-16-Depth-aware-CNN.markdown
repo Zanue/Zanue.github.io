@@ -77,17 +77,21 @@ GitHub links:
 
 ## 3D Neighborhood Convolution: Learning Depth-Aware Features for RGB-D and RGB Semantic Segmentation
 
-Core idea: depth channel is used to adapt the receptive field of the convolution.
+**Core idea: depth channel is used to adapt the receptive field of the convolution.**
+
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/depth-aware-cnn/3dn-conv-structure.jpg){:height="80%" width="80%"}  
+<center style="font-size:14px">Figure 2: Overall structure of 3DN-Conv.</center> 
+
 
 ### Depth locality
 
 <p>
 $$
-\mathbf{y}_i = f \left( \mathbf{b} + \sum_{j \in \mathcal{N}_i} \mathcal{L}_{ji} \mathrm{W}_{n_{ji}} \mathbf{x}_j \right)
+\mathbf{y}_i = f \left( \mathbf{b} + \sum_{j \in \mathcal{N}_i} \mathcal{L}_{ji} \mathbf{W}_{n_{ji}} \mathbf{x}_j \right)
 $$
 </p>
 
-where $\mathcal{L} _{ji} = \exp (\frac{d _j - d _i}{\sigma})^2$
+where $\mathcal{L} _{ji} = \exp (\frac{d _j - d _i}{\sigma})^2$.
 
 
 ### Neighborhood scale selection
@@ -98,7 +102,7 @@ $$
 $$
 </p>
 
-where $\mathbf{W} _{n _{ji}}^{\mathcal{L}} = \mathcal{L} _{ji} \mathrm{W} _{n _{ji}}$, $\mathcal{N} _i^{S}$ is the scaled 2D neighborhood, defined by
+where $\mathbf{W} _{n _{ji}}^{\mathcal{L}} = \mathcal{L} _{ji} \mathbf{W} _{n _{ji}}$, $\mathcal{N} _i^{S}$ is the scaled 2D neighborhood, defined by
 
 <p>
 $$
