@@ -129,8 +129,8 @@ where $\mathrm{W} _{n _{ji}}^{\mathcal{E}}$ is a standard convolutional filter.
 
 **Core idea:** mimic a 3D $k \times k \times k$ convolution kernel by $k$ 2D kernels of size $k \times k$ with help of corresponding depth information.
 
-![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/depth-aware-cnn/3dn-conv-structure.jpg){:height="80%" width="80%"}  
-<center style="font-size:14px">Figure 3: Illustration of a $3 \times 3 \times 3$ 2.5D convolution kernel. We slice the receptive field into 3 layers along the depth dimension and assign each pixel inside receptive depth range to the corresponding layer. *Each layer is handled by an individual 2D convolution kernel.* We implement the layered scheme by masking each 2D kernel according to the presence of pixels in the layer. The whole process can be conducted on 2D plane. </center> 
+![](https://github.com/Zanue/Zanue.github.io/raw/main/images/blog_img/depth-aware-cnn/2.5d-conv-structure.jpg){:height="80%" width="80%"}  
+<center style="font-size:14px">Figure 3: Illustration of a $3 \times 3 \times 3$ 2.5D convolution kernel. We slice the receptive field into 3 layers along the depth dimension and assign each pixel inside receptive depth range to the corresponding layer. Each layer is handled by an individual 2D convolution kernel. We implement the layered scheme by masking each 2D kernel according to the presence of pixels in the layer. The whole process can be conducted on 2D plane. </center> 
 
 ### 2.5D convolution
 For a $k \times k$ standard 2D convolution kernel with square receptive field, we denote the size of the receptive field as $k \Delta p \times k \Delta p$, and thus each grid in the receptive field has a size of $\Delta p \times \Delta p$.
