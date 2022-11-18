@@ -240,12 +240,11 @@ $$
 
 where $a_ k$ is a learnable parameter that determines the center of the kernel’s depth receptive field, and $t$ is a learnable temperature parameter that can sharpen/soften the activation of softmax. $h_ {0}$ and $h_ {K+1}$ are defined as
 
-
 <p>
 $$
 \begin{aligned}
     h_0 &= -\mathrm{sgn}(d(\mathbf{c}_i, \mathbf{c}_i + \mathbf{c}_p) - a_0) \cdot (d(\mathbf{c}_i, \mathbf{c}_i + \mathbf{c}_p) - a_0)^2 / t \\
-    h_{K+1}} &= \mathrm{sgn}(d(\mathbf{c}_i, \mathbf{c}_i + \mathbf{c}_p) - a_{K+1}) \cdot (d(\mathbf{c}_i, \mathbf{c}_i + \mathbf{c}_p) - a_{K+1}})^2 / t.
+    h_{K+1}} &= \mathrm{sgn}(d(\mathbf{c}_i, \mathbf{c}_i + \mathbf{c}_p) - a_{K+1}) \cdot (d(\mathbf{c}_i, \mathbf{c}_i + \mathbf{c}_p) - a_{K+1})^2 / t.
 \end{aligned}
 $$
 </p>
@@ -280,11 +279,12 @@ $\mathbf{R}_ {sf}(\mathbf{p}) = \{ \mathbf{p}′ \}$ such that
 <p>
 $$
 \begin{aligned}
-    \mathbf{p}'_{i} &\in [\mathbf{p}_i - \frac{\Delta_{sf}}{\mathbf{p}_z}, \mathbf{p}_i + \frac{\Delta_{sf}}{\mathbf{p}_z}] \\
-    \mathbf{p}'_{j} &\in [\mathbf{p}_j - \frac{\Delta_{sf}}{\mathbf{p}_z}, \mathbf{p}_j + \frac{\Delta_{sf}}{\mathbf{p}_z}] 
+    \mathbf{p}^{'}_{i} &\in [\mathbf{p}_i - \frac{\Delta_{sf}}{\mathbf{p}_z}, \mathbf{p}_i + \frac{\Delta_{sf}}{\mathbf{p}_z}] \\
+    \mathbf{p}^{'}_{j} &\in [\mathbf{p}_j - \frac{\Delta_{sf}}{\mathbf{p}_z}, \mathbf{p}_j + \frac{\Delta_{sf}}{\mathbf{p}_z}]
 \end{aligned}
 $$
 </p>
+
 
 Practically, SurfConv can be simply implemented with a depth-aware multi-scale 2D convolution.
 
