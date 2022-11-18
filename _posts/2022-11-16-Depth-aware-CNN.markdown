@@ -281,7 +281,7 @@ $\mathbf{R}_ {sf}(\mathbf{p}) = \{ \mathbf{p}′ \}$ such that
 $$
 \begin{aligned}
     \mathbf{p}'_{i} &\in [\mathbf{p}_i - \frac{\Delta_{sf}}{\mathbf{p}_z}, \mathbf{p}_i + \frac{\Delta_{sf}}{\mathbf{p}_z}] \\
-    \mathbf{p}'_{j} &\in [\mathbf{p}_j - \frac{\Delta_{sf}}{\mathbf{p}_z}, \mathbf{p}_j + \frac{\Delta_{sf}}{\mathbf{p}_z}] \\
+    \mathbf{p}'_{j} &\in [\mathbf{p}_j - \frac{\Delta_{sf}}{\mathbf{p}_z}, \mathbf{p}_j + \frac{\Delta_{sf}}{\mathbf{p}_z}] 
 \end{aligned}
 $$
 </p>
