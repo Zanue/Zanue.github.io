@@ -244,7 +244,7 @@ where $a_ k$ is a learnable parameter that determines the center of the kernelâ€
 $$
 \begin{aligned}
     h_0 &= -\mathrm{sgn}(d(\mathbf{c}_i, \mathbf{c}_i + \mathbf{c}_p) - a_0) \cdot (d(\mathbf{c}_i, \mathbf{c}_i + \mathbf{c}_p) - a_0)^2 / t \\
-    h_{K+1}} &= \mathrm{sgn}(d(\mathbf{c}_i, \mathbf{c}_i + \mathbf{c}_p) - a_{K+1}) \cdot (d(\mathbf{c}_i, \mathbf{c}_i + \mathbf{c}_p) - a_{K+1})^2 / t.
+    h_{K+1} &= \mathrm{sgn}(d(\mathbf{c}_i, \mathbf{c}_i + \mathbf{c}_p) - a_{K+1}) \cdot (d(\mathbf{c}_i, \mathbf{c}_i + \mathbf{c}_p) - a_{K+1})^2 / t
 \end{aligned}
 $$
 </p>
