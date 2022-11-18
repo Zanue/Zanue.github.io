@@ -196,3 +196,111 @@ $$
 ### Integrating 2.5D convolution into pretrained CNN
 Each $k \times k \times k$ 2.5D convolution has $k$ 2D convolution kernels, and we can load the pretrained weights of 2D convolution into each of the kernels. In finetuning time, the $k$ kernels starts from the same initialization. Because the masks ml at different layer cannot have intersection, and the sum of all masks have zero only when the pixel falls out of the receptive depth range, this loading method can ensure that besides those fall-out pixels, the initial 2.5D convolution behaves the same of 2D convolution and is gradually trained to model 3D information.
 
+
+<br/>
+
+## Malleable 2.5D Convolution: Learning Receptive Fields along the Depth-axis for RGB-D Scene Parsing
+
+**Core idea:** A type of 2.5D convolution which learns the receptive field along the depth-axis.
+ 
+### Learning Receptive Fields along the Depth-axis
+
+A malleable 2.5D convolution has $K$ convolution kernels whose receptive fields are sequentially arranged along the depth-axis. And the pixels are assigned to the kernels according to depth map $\mathbf{d}$:
+
+<p>
+$$
+\mathbf{y}(\mathbf{c}_i) = \sum_{k=1}^K \sum_{\mathbf{c}_p \in \mathcal{R}_p} g_k(\mathbf{d}(\mathbf{c}_i), \mathbf{d}(\mathbf{c}_i + \mathbf{c}_p)) \cdot \mathbf{w}_k (\mathbf{c}_p) \cdot \mathbf{x}(\mathbf{c}_i + \mathbf{c}_p),
+$$
+</p>
+
+where $g_ k$ is the assigning function for kernel $k$. $g_ k$ defines the depth receptive field of kernel $k$, and satisfies
+
+<p>
+$$
+\sum_{k=1}^K g_k(\mathbf{d}(\mathbf{c}_i), \mathbf{d}(\mathbf{c}_i + \mathbf{c}_p)) \leq 1, \forall \mathbf{c}_p \in \mathcal{R}_p,
+$$
+</p>
+
+To make the assigning functions differentiable, we implement them as a soft-max classification:
+
+<p>
+$$
+g_k(\mathbf{d}(\mathbf{c}_i), \mathbf{d}(\mathbf{c}_i + \mathbf{c}_p)) = \frac{\exp (h_k(\mathbf{d}(\mathbf{c}_i), \mathbf{d}(\mathbf{c}_i + \mathbf{c}_p)))}{\sum_{m=0}^{K+1} \exp (h_m(\mathbf{d}(\mathbf{c}_i), \mathbf{d}(\mathbf{c}_i + \mathbf{c}_p)))}
+$$
+</p>
+
+
+For $k = 1, 2, \dots ,K$, $h_ k$ are defined by the relative depth difference as
+
+<p>
+$$
+h_k(\mathbf{d}(\mathbf{c}_i), \mathbf{d}(\mathbf{c}_i + \mathbf{c}_p)) = - (d(\mathbf{c}_i, \mathbf{c}_i + \mathbf{c}_p) - a_k)^2 / t,
+$$
+</p>
+
+where $a_ k$ is a learnable parameter that determines the center of the kernel’s depth receptive field, and $t$ is a learnable temperature parameter that can sharpen/soften the activation of softmax. $h_ {0}$ and $h_ {K+1}$ are defined as
+
+
+<p>
+$$
+\begin{aligned}
+    h_0 &= -\mathrm{sgn}(d(\mathbf{c}_i, \mathbf{c}_i + \mathbf{c}_p) - a_0) \cdot (d(\mathbf{c}_i, \mathbf{c}_i + \mathbf{c}_p) - a_0)^2 / t \\
+    h_{K+1}} &= \mathrm{sgn}(d(\mathbf{c}_i, \mathbf{c}_i + \mathbf{c}_p) - a_{K+1}) \cdot (d(\mathbf{c}_i, \mathbf{c}_i + \mathbf{c}_p) - a_{K+1}})^2 / t.
+\end{aligned}
+$$
+</p>
+
+
+### Kernel Rebalancing
+we introduce a scale factor $s_ k$ to rebalance the output scales of different kernel:
+
+<p>
+$$
+\mathbf{y}(\mathbf{c}_i) = \sum_{k=1}^K \sum_{\mathbf{c}_p \in \mathcal{R}_p} s_k \cdot g_k(\mathbf{d}(\mathbf{c}_i), \mathbf{d}(\mathbf{c}_i + \mathbf{c}_p)) \cdot \mathbf{w}_k (\mathbf{c}_p) \cdot \mathbf{x}(\mathbf{c}_i + \mathbf{c}_p),
+$$
+</p>
+
+where
+
+<p>
+$$
+s_k = \frac{\exp (b_k)}{\sum_{k=1}^K \exp (b_k)}.
+$$
+</p>
+
+
+<br/>
+
+## SurfConv: Bridging 3D and 2D Convolution for RGBD Images
+
+### Surface Convolution Notation.
+We can further apply the projection matrix, and obtain the final receptive field definition of SurfConv:
+$\mathbf{R}_ {sf}(\mathbf{p}) = \{ \mathbf{p}′ \}$ such that
+
+<p>
+$$
+\begin{aligned}
+    \mathbf{p}'_{i} &\in [\mathbf{p}_i - \frac{\Delta_{sf}}{\mathbf{p}_z}, \mathbf{p}_i + \frac{\Delta_{sf}}{\mathbf{p}_z}] \\
+    \mathbf{p}'_{j} &\in [\mathbf{p}_j - \frac{\Delta_{sf}}{\mathbf{p}_z}, \mathbf{p}_j + \frac{\Delta_{sf}}{\mathbf{p}_z}] \\
+\end{aligned}
+$$
+</p>
+
+Practically, SurfConv can be simply implemented with a depth-aware multi-scale 2D convolution.
+
+### $D^4$: Data-Driven Depth Discretization
+define the *importance function* of a point as
+
+<p>
+$$
+\mathbf{\Theta} (\mathbf{p}) = \mathbf{p}_z^{\gamma}
+$$
+</p>
+
+
+where we refer to $\gamma$ as the *importance index*. The best index is determined by $\hat{\gamma} = 2 - \zeta$, where $\zeta$ quantifies this near-far tradeoff.
+
+
+
+### Code
+[https://github.com/chuhang/SurfConv](https://github.com/chuhang/SurfConv "https://github.com/chuhang/SurfConv")
