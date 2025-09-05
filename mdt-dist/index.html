@@ -4,7 +4,7 @@
         
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Few-step Flow for 3D Generation via Marginal-Data Transport Distillation</title>
-        <link rel="icon" href="https://microsoft.github.io/TRELLIS/favicon.png">
+        <!-- <link rel="icon" href="https://microsoft.github.io/TRELLIS/favicon.png"> -->
         <link rel="stylesheet" href="./mdt-dist_files/stylesheet.css">
         <link rel="stylesheet" href="./mdt-dist_files/stylesheet(1).css">
         <link rel="stylesheet" href="./mdt-dist_files/style.css">
@@ -81,14 +81,14 @@
                 Our approach is built upon a primary objective: 
                 <span style="font-size: 16px; font-weight: 600;">dist</span>illing the pretrained model to learn the 
                 <span style="font-size: 16px; font-weight: 600;">M</span>arginal-<span style="font-size: 16px; font-weight: 600;">D</span>ata <span style="font-size: 16px; font-weight: 600;">T</span>ransport. 
-                Since directly learning this objective needs to integrate the velocity fields which is intractable, 
-                we propose two optimizable objectives, Velocity Matching (VM) and Velocity Distillation (VD), 
+                Directly learning this objective needs to integrate the velocity fields, while this integral is intractable to be implemented. 
+                Therefore, we propose two optimizable objectives, Velocity Matching (VM) and Velocity Distillation (VD), 
                 to equivalently convert the optimization target from the transport level to the velocity and the distribution level respectively. 
                 Velocity Matching (VM) learns to stably match the velocity fields between the student and the teacher, 
                 but inevitably provides biased gradient estimates. 
                 Velocity Distillation (VD) further enhances the optimization process by leveraging the learned velocity fields to perform probability density distillation.
                 When evaluated on the pioneer 3D generation framework TRELLIS, our method reduces sampling steps of each flow transformer from 25 to 1–2, 
-                while preserving high visual and geometric fidelity. 
+                achieving <span style="font-size: 16px; font-weight: 600;">0.68s</span> (1 step x2) and <span style="font-size: 16px; font-weight: 600;">0.94s</span> (2 steps x2) latency with <span style="font-size: 16px; font-weight: 600;">9.0x</span> and <span style="font-size: 16px; font-weight: 600;">6.5x</span> speedup on A800, while preserving high visual and geometric fidelity. 
                 Extensive experiments demonstrate that our method significantly outperforms existing CM distillation methods, 
                 and enables TRELLIS to achieve superior performance in few-step 3D generation. 
             </div>
