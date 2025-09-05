@@ -1,0 +1,668 @@
+
+<!-- saved from url=(0036)https://microsoft.github.io/TRELLIS/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Few-step Flow for 3D Generation via Marginal-Data Transport Distillation</title>
+        <link rel="icon" href="https://microsoft.github.io/TRELLIS/favicon.png">
+        <link rel="stylesheet" href="./mdt-dist_files/stylesheet.css">
+        <link rel="stylesheet" href="./mdt-dist_files/stylesheet(1).css">
+        <link rel="stylesheet" href="./mdt-dist_files/style.css">
+        <link rel="stylesheet" href="./mdt-dist_files/window.css">
+        <link rel="stylesheet" href="./mdt-dist_files/carousel.css">
+        <link rel="stylesheet" href="./mdt-dist_files/selection_panel.css">
+        <link rel="stylesheet" href="./mdt-dist_files/main.css">
+        <script src="./mdt-dist_files/window.js.下载"></script>
+        <script src="./mdt-dist_files/carousel.js.下载"></script>
+        <script src="./mdt-dist_files/selection_panel.js.下载"></script>
+        <script src="./mdt-dist_files/generation.js.下载"></script>
+        <script src="./mdt-dist_files/editing.js.下载"></script>
+        <script src="./mdt-dist_files/application.js.下载"></script>
+		<script src="./mdt-dist_files/main.js.下载"></script>
+        <!-- <script type="module" src="./mdt-dist_files/model-viewer.min.js.下载"></script> -->
+        <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js"></script>
+    </head>
+    <body data-new-gr-c-s-check-loaded="14.1251.0" data-gr-ext-installed="">
+        <div id="main">
+            <!-- <div id="logo">
+                <video autoplay="" playsinline="" loop="" muted="" src="assets/logo.mp4" poster="assets/logo.jpg"></video>*
+            </div> -->
+            <div id="title" class="x-gradient-font">
+                <!-- <span style="font-size: 43px;">Few-step Flow for 3D Generation via Marginal-Data Transport Distillation</span> -->
+                <span style="font-size: 43px;">Few-step Flow for 3D Generation via</span><br>
+                <span style="font-size: 43px;">Marginal-Data Transport Distillation</span>
+            </div>
+            <div id="authors">
+                <div><a class="link" href="https://github.com/Zanue">Zanwei Zhou</a><sup>1,*</sup></div>
+                <div><a class="link" href="https://taoranyi.com/">Taoran Yi</a><sup>2,*</sup></div>
+                <div><a class="link" href="https://jaminfong.cn/">Jiemin Fang</a><sup>3,&dagger;</sup></div>
+                <div><a class="link" href="https://chensjtu.github.io/">Chen Yang</a><sup>1</sup></div>
+                <div><a class="link" href="http://lingxixie.com/Home.html">Lingxi Xie</a><sup>3</sup></div>
+                <div><a class="link" href="https://xwcv.github.io/">Xinggang Wang</a><sup>2</sup></div>
+                <div><a class="link" href="https://shenwei1231.github.io/">Wei Shen</a><sup>1,&dagger;</sup></div>
+                <div><a class="link" href="https://www.qitian1987.com/">Qi Tian</a><sup>3</sup></div>
+            </div>
+            <div id="institution">
+                <div><sup>1</sup><a class="link" href="https://en.sjtu.edu.cn/">Shanghai Jiao Tong University</a></div>
+                <div><sup>2</sup><a class="link" href="https://english.hust.edu.cn/">Huazhong University of Science and Technology</a></div>
+                <div><sup>3</sup><a class="link" href="https://www.huawei.com/en/">Huawei Inc.</a></div>
+            </div>
+                <p style="text-align:center;"><sup>*</sup>Equal contribution &nbsp; <sup>&dagger;</sup>Corresponding author</p>
+            <div class="x-center-text" style="font-size: 20px; font-weight: 700; color: #5f5f5f;">
+                ArXiv 2025
+            </div>
+            <div id="links">
+                <div><a id="paper" href="https://arxiv.org/">Paper</a></div>
+                <div><a id="arxiv" href="https://arxiv.org/">Arxiv</a></div>
+                <div><a id="code" href="https://github.com/Zanue/MDT-dist">Code</a></div>
+                <!-- <div><a id="demo" href="https://huggingface.co/spaces/Microsoft/TRELLIS">Demo</a></div> -->
+            </div>
+            <div class="x-center-text" style="font-size: 20px; font-weight: 500; color: #3f3f3f;">
+                <b>TL;DR:</b> We distill each TRELLIS flow transformer to just 1–2 steps via <i><b>Marginal-Data Transport Distillation</b></i>.
+            </div>
+            <!-- <div class="x-center-text" style="font-size: 18px; font-weight: 600; color: #7a0e0e;"><i>
+                (Note: This is the only official webpage for the TRELLIS project)
+            </i></div> -->
+            <!-- <div id="teaser">
+                <div style="width: 100%;"><video autoplay="" playsinline="" loop="" muted="" src="./mdt-dist_files/demo_video_compressed.mp4" poster="./mdt-dist_files/castle.png"></video></div>
+            </div> -->
+            <div style="width: 100%; aspect-ratio: 16/9">
+                <video controls="" muted="" height="100%" src="./mdt-dist_files/demo_video.mp4"></video>
+            </div>
+            <!-- <div class="x-center-text" style="font-size: 20px; font-weight: 500; color: #3f3f3f;">
+                <b>TL;DR:</b> A native 3D generative model built on a <i><b>unified Structured Latent representation</b></i> and <i><b>Rectified Flow Transformers</b></i>,
+                    enabling versatile and high-quality 3D asset creation.
+            </div> -->
+            <div id="abstract" class="x-gradient-block">
+                Flow-based 3D generation models typically require dozens of sampling steps during inference. 
+                Though few-step distillation methods, particularly Consistency Models (CMs), have achieved substantial advancements in accelerating 2D diffusion models, 
+                they remain under-explored for more complex 3D generation tasks. 
+                In this study, we propose a novel framework, <span style="font-size: 16px; font-weight: 600;">MDT-dist</span>, for few-step 3D flow distillation. 
+                Our approach is built upon a primary objective: 
+                <span style="font-size: 16px; font-weight: 600;">dist</span>illing the pretrained model to learn the 
+                <span style="font-size: 16px; font-weight: 600;">M</span>arginal-<span style="font-size: 16px; font-weight: 600;">D</span>ata <span style="font-size: 16px; font-weight: 600;">T</span>ransport. 
+                Since directly learning this objective needs to integrate the velocity fields which is intractable, 
+                we propose two optimizable objectives, Velocity Matching (VM) and Velocity Distillation (VD), 
+                to equivalently convert the optimization target from the transport level to the velocity and the distribution level respectively. 
+                Velocity Matching (VM) learns to stably match the velocity fields between the student and the teacher, 
+                but inevitably provides biased gradient estimates. 
+                Velocity Distillation (VD) further enhances the optimization process by leveraging the learned velocity fields to perform probability density distillation.
+                When evaluated on the pioneer 3D generation framework TRELLIS, our method reduces sampling steps of each flow transformer from 25 to 1–2, 
+                while preserving high visual and geometric fidelity. 
+                Extensive experiments demonstrate that our method significantly outperforms existing CM distillation methods, 
+                and enables TRELLIS to achieve superior performance in few-step 3D generation. 
+            </div>
+            <!-- <p class="x-note">
+                <i>* Generated by</i> <span style="font-size: 16px; font-weight: 600;">T</span><span style="font-size: 12px; font-weight: 700;">RELLIS</span>, <i>using its</i> <span style="font-size: 16px; font-weight: 600;">image to 3D assets</span> <i>cabilities.</i>
+            </p> -->
+            <!-- <p class="x-note">
+                <i>The appearance and geometry shown in this page are rendered from 3D Gaussians and meshes, respectively.
+                GLB files are extracted by baking appearance from 3D Gaussians to meshes.</i>
+            </p> -->
+
+            <!-- <div class="x-section-title"><div class="x-gradient-font">Generation <span style="font-size: 40px; font-weight:600;">|</span> Text to 3D Asset</div></div>
+            <p>All text prompts are generated by GPT-4. Click on the cards to view extracted GLB files.</p>
+            <div id="results-txt2"><div class="x-carousel-slider"><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(txt2_window_template({&quot;video&quot;:&quot;telephone.mp4&quot;,&quot;prompt&quot;:&quot;Vintage copper rotary telephone with intricate detailing.&quot;,&quot;model&quot;:&quot;telephone.glb&quot;,&quot;exposure&quot;:5,&quot;source&quot;:&quot;GPT-4&quot;}))">
+                <div class="x-labels">
+                    <div class="x-label">GLB ✓</div>
+                </div>
+                <div style="width: 100%; aspect-ratio: 1">
+                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/txt2/videos/telephone.mp4"></video>
+                </div>
+                <div class="caption">
+                    <div class="x-handwriting">
+                        Vintage copper rotary telephone with intricate detailing.
+                    </div>
+                </div>
+            </div></div><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(txt2_window_template({&quot;video&quot;:&quot;house.mp4&quot;,&quot;prompt&quot;:&quot;Two-story brick house with red roof and fence.&quot;,&quot;model&quot;:&quot;house.glb&quot;,&quot;exposure&quot;:10,&quot;source&quot;:&quot;GPT-4&quot;}))">
+                <div class="x-labels">
+                    <div class="x-label">GLB ✓</div>
+                </div>
+                <div style="width: 100%; aspect-ratio: 1">
+                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/txt2/videos/house.mp4"></video>
+                </div>
+                <div class="caption">
+                    <div class="x-handwriting">
+                        Two-story brick house with red roof and fence.
+                    </div>
+                </div>
+            </div></div><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(txt2_window_template({&quot;video&quot;:&quot;orb_pedestal.mp4&quot;,&quot;prompt&quot;:&quot;Glowing orb on a stone pedestal.&quot;,&quot;model&quot;:&quot;orb_pedestal.glb&quot;,&quot;exposure&quot;:10,&quot;source&quot;:&quot;GPT-4&quot;}))">
+                <div class="x-labels">
+                    <div class="x-label">GLB ✓</div>
+                </div>
+                <div style="width: 100%; aspect-ratio: 1">
+                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/txt2/videos/orb_pedestal.mp4"></video>
+                </div>
+                <div class="caption">
+                    <div class="x-handwriting">
+                        Glowing orb on a stone pedestal.
+                    </div>
+                </div>
+            </div></div><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(txt2_window_template({&quot;video&quot;:&quot;spherical_robot.mp4&quot;,&quot;prompt&quot;:&quot;Spherical robot with gold and silver design.&quot;,&quot;model&quot;:&quot;spherical_robot.glb&quot;,&quot;exposure&quot;:10,&quot;source&quot;:&quot;GPT-4&quot;}))">
+                <div class="x-labels">
+                    <div class="x-label">GLB ✓</div>
+                </div>
+                <div style="width: 100%; aspect-ratio: 1">
+                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/txt2/videos/spherical_robot.mp4"></video>
+                </div>
+                <div class="caption">
+                    <div class="x-handwriting">
+                        Spherical robot with gold and silver design.
+                    </div>
+                </div>
+            </div></div><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(txt2_window_template({&quot;video&quot;:&quot;owl.mp4&quot;,&quot;prompt&quot;:&quot;Bronze owl sculpture perched on a branch.&quot;,&quot;model&quot;:&quot;owl.glb&quot;,&quot;exposure&quot;:5,&quot;source&quot;:&quot;GPT-4&quot;}))">
+                <div class="x-labels">
+                    <div class="x-label">GLB ✓</div>
+                </div>
+                <div style="width: 100%; aspect-ratio: 1">
+                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/txt2/videos/owl.mp4"></video>
+                </div>
+                <div class="caption">
+                    <div class="x-handwriting">
+                        Bronze owl sculpture perched on a branch.
+                    </div>
+                </div>
+            </div></div><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(txt2_window_template({&quot;video&quot;:&quot;robot_arm.mp4&quot;,&quot;prompt&quot;:&quot;Futuristic robotic arm on a table.&quot;,&quot;model&quot;:&quot;robot_arm.glb&quot;,&quot;exposure&quot;:10,&quot;source&quot;:&quot;GPT-4&quot;}))">
+                <div class="x-labels">
+                    <div class="x-label">GLB ✓</div>
+                </div>
+                <div style="width: 100%; aspect-ratio: 1">
+                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/txt2/videos/robot_arm.mp4"></video>
+                </div>
+                <div class="caption">
+                    <div class="x-handwriting">
+                        Futuristic robotic arm on a table.
+                    </div>
+                </div>
+            </div></div><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(txt2_window_template({&quot;video&quot;:&quot;log_cabin.mp4&quot;,&quot;prompt&quot;:&quot;A rustic log cabin with a stone chimney and a wooden porch.&quot;,&quot;model&quot;:&quot;log_cabin.glb&quot;,&quot;exposure&quot;:10,&quot;source&quot;:&quot;GPT-4&quot;}))">
+                <div class="x-labels">
+                    <div class="x-label">GLB ✓</div>
+                </div>
+                <div style="width: 100%; aspect-ratio: 1">
+                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/txt2/videos/log_cabin.mp4"></video>
+                </div>
+                <div class="caption">
+                    <div class="x-handwriting">
+                        A rustic log cabin with a stone chimney and a wooden porch.
+                    </div>
+                </div>
+            </div></div><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(txt2_window_template({&quot;video&quot;:&quot;blocky_robot.mp4&quot;,&quot;prompt&quot;:&quot;Blocky, orange and teal robot with articulated limbs.&quot;,&quot;model&quot;:&quot;blocky_robot.glb&quot;,&quot;exposure&quot;:5,&quot;source&quot;:&quot;GPT-4&quot;}))">
+                <div class="x-labels">
+                    <div class="x-label">GLB ✓</div>
+                </div>
+                <div style="width: 100%; aspect-ratio: 1">
+                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/txt2/videos/blocky_robot.mp4"></video>
+                </div>
+                <div class="caption">
+                    <div class="x-handwriting">
+                        Blocky, orange and teal robot with articulated limbs.
+                    </div>
+                </div>
+            </div></div></div><div class="x-carousel-nav"><div class="x-carousel-switch" onclick="carousel_prev(&#39;results-txt2&#39;)">◀</div><div class="x-carousel-pages"><div class="x-carousel-page x-carousel-page-active" onclick="carousel_page(&#39;results-txt2&#39;, 0)"></div><div class="x-carousel-page" onclick="carousel_page(&#39;results-txt2&#39;, 1)"></div><div class="x-carousel-page" onclick="carousel_page(&#39;results-txt2&#39;, 2)"></div><div class="x-carousel-page" onclick="carousel_page(&#39;results-txt2&#39;, 3)"></div></div><div class="x-carousel-switch" onclick="carousel_next(&#39;results-txt2&#39;)">▶</div></div></div> -->
+            
+
+
+            
+
+<!-- 
+            <div class="x-section-title"><div class="x-gradient-font">Generation <span style="font-size: 40px; font-weight:600;">|</span> 2 steps x 2</div></div>
+            <p>Image prompts are generated by DALL-E 3. Click on the cards to view extracted GLB files.</p>
+            <div id="results-img2"><div class="x-carousel-slider"><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;video&quot;:&quot;trellis.mp4&quot;,&quot;prompt&quot;:&quot;trellis.png&quot;,&quot;model&quot;:&quot;trellis.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A detailed trellis structure&quot;}))">
+                <div class="x-labels">
+                    <div class="x-label">GLB ✓</div>
+                </div>
+                <div style="width: 100%; aspect-ratio: 1">
+                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/img2/videos/trellis.mp4"></video>
+                </div>
+                <div class="caption">
+                    <div class="x-image-prompt">
+                        <img src="./mdt-dist_files/trellis.png" alt="A detailed trellis structure">
+                    </div>
+                </div>
+            </div></div><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;video&quot;:&quot;paper_machine.mp4&quot;,&quot;prompt&quot;:&quot;paper_machine.png&quot;,&quot;model&quot;:&quot;paper_machine.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A machine for processing paper&quot;}))">
+                <div class="x-labels">
+                    <div class="x-label">GLB ✓</div>
+                </div>
+                <div style="width: 100%; aspect-ratio: 1">
+                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/img2/videos/paper_machine.mp4"></video>
+                </div>
+                <div class="caption">
+                    <div class="x-image-prompt">
+                        <img src="./mdt-dist_files/paper_machine.png" alt="A machine for processing paper">
+                    </div>
+                </div>
+            </div></div><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;video&quot;:&quot;ship.mp4&quot;,&quot;prompt&quot;:&quot;ship.png&quot;,&quot;model&quot;:&quot;ship.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A large sailing ship&quot;}))">
+                <div class="x-labels">
+                    <div class="x-label">GLB ✓</div>
+                </div>
+                <div style="width: 100%; aspect-ratio: 1">
+                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/img2/videos/ship.mp4"></video>
+                </div>
+                <div class="caption">
+                    <div class="x-image-prompt">
+                        <img src="./mdt-dist_files/ship.png" alt="A large sailing ship">
+                    </div>
+                </div>
+            </div></div><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;video&quot;:&quot;food_cart.mp4&quot;,&quot;prompt&quot;:&quot;food_cart.png&quot;,&quot;model&quot;:&quot;food_cart.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A food cart on a busy street&quot;}))">
+                <div class="x-labels">
+                    <div class="x-label">GLB ✓</div>
+                </div>
+                <div style="width: 100%; aspect-ratio: 1">
+                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/img2/videos/food_cart.mp4"></video>
+                </div>
+                <div class="caption">
+                    <div class="x-image-prompt">
+                        <img src="./mdt-dist_files/food_cart.png" alt="A food cart on a busy street">
+                    </div>
+                </div>
+            </div></div><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;video&quot;:&quot;loong.mp4&quot;,&quot;prompt&quot;:&quot;loong.png&quot;,&quot;model&quot;:&quot;loong.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A mythical Chinese dragon&quot;}))">
+                <div class="x-labels">
+                    <div class="x-label">GLB ✓</div>
+                </div>
+                <div style="width: 100%; aspect-ratio: 1">
+                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/img2/videos/loong.mp4"></video>
+                </div>
+                <div class="caption">
+                    <div class="x-image-prompt">
+                        <img src="./mdt-dist_files/loong.png" alt="A mythical Chinese dragon">
+                    </div>
+                </div>
+            </div></div><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;video&quot;:&quot;mech.mp4&quot;,&quot;prompt&quot;:&quot;mech.png&quot;,&quot;model&quot;:&quot;mech.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A futuristic robot mech&quot;}))">
+                <div class="x-labels">
+                    <div class="x-label">GLB ✓</div>
+                </div>
+                <div style="width: 100%; aspect-ratio: 1">
+                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/img2/videos/mech.mp4"></video>
+                </div>
+                <div class="caption">
+                    <div class="x-image-prompt">
+                        <img src="./mdt-dist_files/mech.png" alt="A futuristic robot mech">
+                    </div>
+                </div>
+            </div></div><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;video&quot;:&quot;castle.mp4&quot;,&quot;prompt&quot;:&quot;castle.png&quot;,&quot;model&quot;:&quot;castle.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A medieval castle with high towers&quot;,&quot;exposure&quot;:2}))">
+                <div class="x-labels">
+                    <div class="x-label">GLB ✓</div>
+                </div>
+                <div style="width: 100%; aspect-ratio: 1">
+                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/img2/videos/castle.mp4"></video>
+                </div>
+                <div class="caption">
+                    <div class="x-image-prompt">
+                        <img src="./mdt-dist_files/castle.png" alt="A medieval castle with high towers">
+                    </div>
+                </div>
+            </div></div><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;video&quot;:&quot;toolbox.mp4&quot;,&quot;prompt&quot;:&quot;toolbox.png&quot;,&quot;model&quot;:&quot;toolbox.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A toolbox filled with tools&quot;}))">
+                <div class="x-labels">
+                    <div class="x-label">GLB ✓</div>
+                </div>
+                <div style="width: 100%; aspect-ratio: 1">
+                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/img2/videos/toolbox.mp4"></video>
+                </div>
+                <div class="caption">
+                    <div class="x-image-prompt">
+                        <img src="./mdt-dist_files/toolbox.png" alt="A toolbox filled with tools">
+                    </div>
+                </div>
+            </div></div></div><div class="x-carousel-nav"><div class="x-carousel-switch" onclick="carousel_prev(&#39;results-img2&#39;)">◀</div><div class="x-carousel-pages"><div class="x-carousel-page x-carousel-page-active" onclick="carousel_page(&#39;results-img2&#39;, 0)"></div><div class="x-carousel-page" onclick="carousel_page(&#39;results-img2&#39;, 1)"></div><div class="x-carousel-page" onclick="carousel_page(&#39;results-img2&#39;, 2)"></div><div class="x-carousel-page" onclick="carousel_page(&#39;results-img2&#39;, 3)"></div><div class="x-carousel-page" onclick="carousel_page(&#39;results-img2&#39;, 4)"></div></div><div class="x-carousel-switch" onclick="carousel_next(&#39;results-img2&#39;)">▶</div></div></div>
+
+
+
+
+            <div class="x-section-title"><div class="x-gradient-font">Generation <span style="font-size: 40px; font-weight:600;">|</span> 1 step x 2</div></div>
+            <p>Image prompts are generated by DALL-E 3. Click on the cards to view extracted GLB files.</p>
+            <div id="results-img2"><div class="x-carousel-slider"><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;video&quot;:&quot;trellis.mp4&quot;,&quot;prompt&quot;:&quot;trellis.png&quot;,&quot;model&quot;:&quot;trellis.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A detailed trellis structure&quot;}))">
+                <div class="x-labels">
+                    <div class="x-label">GLB ✓</div>
+                </div>
+                <div style="width: 100%; aspect-ratio: 1">
+                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/img2/videos/trellis.mp4"></video>
+                </div>
+                <div class="caption">
+                    <div class="x-image-prompt">
+                        <img src="./mdt-dist_files/trellis.png" alt="A detailed trellis structure">
+                    </div>
+                </div>
+            </div></div><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;video&quot;:&quot;paper_machine.mp4&quot;,&quot;prompt&quot;:&quot;paper_machine.png&quot;,&quot;model&quot;:&quot;paper_machine.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A machine for processing paper&quot;}))">
+                <div class="x-labels">
+                    <div class="x-label">GLB ✓</div>
+                </div>
+                <div style="width: 100%; aspect-ratio: 1">
+                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/img2/videos/paper_machine.mp4"></video>
+                </div>
+                <div class="caption">
+                    <div class="x-image-prompt">
+                        <img src="./mdt-dist_files/paper_machine.png" alt="A machine for processing paper">
+                    </div>
+                </div>
+            </div></div><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;video&quot;:&quot;ship.mp4&quot;,&quot;prompt&quot;:&quot;ship.png&quot;,&quot;model&quot;:&quot;ship.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A large sailing ship&quot;}))">
+                <div class="x-labels">
+                    <div class="x-label">GLB ✓</div>
+                </div>
+                <div style="width: 100%; aspect-ratio: 1">
+                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/img2/videos/ship.mp4"></video>
+                </div>
+                <div class="caption">
+                    <div class="x-image-prompt">
+                        <img src="./mdt-dist_files/ship.png" alt="A large sailing ship">
+                    </div>
+                </div>
+            </div></div><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;video&quot;:&quot;food_cart.mp4&quot;,&quot;prompt&quot;:&quot;food_cart.png&quot;,&quot;model&quot;:&quot;food_cart.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A food cart on a busy street&quot;}))">
+                <div class="x-labels">
+                    <div class="x-label">GLB ✓</div>
+                </div>
+                <div style="width: 100%; aspect-ratio: 1">
+                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/img2/videos/food_cart.mp4"></video>
+                </div>
+                <div class="caption">
+                    <div class="x-image-prompt">
+                        <img src="./mdt-dist_files/food_cart.png" alt="A food cart on a busy street">
+                    </div>
+                </div>
+            </div></div><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;video&quot;:&quot;loong.mp4&quot;,&quot;prompt&quot;:&quot;loong.png&quot;,&quot;model&quot;:&quot;loong.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A mythical Chinese dragon&quot;}))">
+                <div class="x-labels">
+                    <div class="x-label">GLB ✓</div>
+                </div>
+                <div style="width: 100%; aspect-ratio: 1">
+                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/img2/videos/loong.mp4"></video>
+                </div>
+                <div class="caption">
+                    <div class="x-image-prompt">
+                        <img src="./mdt-dist_files/loong.png" alt="A mythical Chinese dragon">
+                    </div>
+                </div>
+            </div></div><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;video&quot;:&quot;mech.mp4&quot;,&quot;prompt&quot;:&quot;mech.png&quot;,&quot;model&quot;:&quot;mech.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A futuristic robot mech&quot;}))">
+                <div class="x-labels">
+                    <div class="x-label">GLB ✓</div>
+                </div>
+                <div style="width: 100%; aspect-ratio: 1">
+                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/img2/videos/mech.mp4"></video>
+                </div>
+                <div class="caption">
+                    <div class="x-image-prompt">
+                        <img src="./mdt-dist_files/mech.png" alt="A futuristic robot mech">
+                    </div>
+                </div>
+            </div></div><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;video&quot;:&quot;castle.mp4&quot;,&quot;prompt&quot;:&quot;castle.png&quot;,&quot;model&quot;:&quot;castle.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A medieval castle with high towers&quot;,&quot;exposure&quot;:2}))">
+                <div class="x-labels">
+                    <div class="x-label">GLB ✓</div>
+                </div>
+                <div style="width: 100%; aspect-ratio: 1">
+                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/img2/videos/castle.mp4"></video>
+                </div>
+                <div class="caption">
+                    <div class="x-image-prompt">
+                        <img src="./mdt-dist_files/castle.png" alt="A medieval castle with high towers">
+                    </div>
+                </div>
+            </div></div><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;video&quot;:&quot;toolbox.mp4&quot;,&quot;prompt&quot;:&quot;toolbox.png&quot;,&quot;model&quot;:&quot;toolbox.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A toolbox filled with tools&quot;}))">
+                <div class="x-labels">
+                    <div class="x-label">GLB ✓</div>
+                </div>
+                <div style="width: 100%; aspect-ratio: 1">
+                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/img2/videos/toolbox.mp4"></video>
+                </div>
+                <div class="caption">
+                    <div class="x-image-prompt">
+                        <img src="./mdt-dist_files/toolbox.png" alt="A toolbox filled with tools">
+                    </div>
+                </div>
+            </div></div></div><div class="x-carousel-nav"><div class="x-carousel-switch" onclick="carousel_prev(&#39;results-img2&#39;)">◀</div><div class="x-carousel-pages"><div class="x-carousel-page x-carousel-page-active" onclick="carousel_page(&#39;results-img2&#39;, 0)"></div><div class="x-carousel-page" onclick="carousel_page(&#39;results-img2&#39;, 1)"></div><div class="x-carousel-page" onclick="carousel_page(&#39;results-img2&#39;, 2)"></div><div class="x-carousel-page" onclick="carousel_page(&#39;results-img2&#39;, 3)"></div><div class="x-carousel-page" onclick="carousel_page(&#39;results-img2&#39;, 4)"></div></div><div class="x-carousel-switch" onclick="carousel_next(&#39;results-img2&#39;)">▶</div></div></div> -->
+
+
+
+
+            <!-- <div class="x-section-title"><div class="x-gradient-font">Editing <span style="font-size: 40px; font-weight:600;">|</span> Asset Variants</div></div>
+            <p>
+                <span style="font-size: 16px; font-weight: 600;">T</span><span style="font-size: 12px; font-weight: 700;">RELLIS</span>
+                can generates variants of a given 3D asset coherent with given text prompts.
+            </p>
+            <div id="results-variants"><div class="x-carousel-slider"><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 1);"><div class="x-card">
+                <div class="x-labels">
+                </div>
+                <div class="x-row" style="flex-wrap: wrap;"><div style="margin: 0 16px; flex: 1 0 120px">
+                    <div class="x-column">
+                        <div style="width: 100%; aspect-ratio: 1; overflow: hidden; border-radius: 8px;">
+                            <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/variants/videos/T_1.mp4"></video>
+                        </div>
+                        <div class="caption">
+                            <div class="x-handwriting">Rugged, metallic texture with orange and white paint finish, suggesting a durable, industrial feel.</div>
+                        </div>
+                    </div>
+                </div><div style="margin: 0 16px; flex: 1 0 120px">
+                    <div class="x-column">
+                        <div style="width: 100%; aspect-ratio: 1; overflow: hidden; border-radius: 8px;">
+                            <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/variants/videos/T_3.mp4"></video>
+                        </div>
+                        <div class="caption">
+                            <div class="x-handwriting">Knitted, fabric-like texture with green and purple colors, featuring playful details.</div>
+                        </div>
+                    </div>
+                </div><div style="margin: 0 16px; flex: 1 0 120px">
+                    <div class="x-column">
+                        <div style="width: 100%; aspect-ratio: 1; overflow: hidden; border-radius: 8px;">
+                            <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/variants/videos/T_4.mp4"></video>
+                        </div>
+                        <div class="caption">
+                            <div class="x-handwriting">Rugged, metallic with leather straps and a blue accent, resembling a medieval weapon.</div>
+                        </div>
+                    </div>
+                </div><div style="margin: 0 16px; flex: 1 0 120px">
+                    <div class="x-column">
+                        <div style="width: 100%; aspect-ratio: 1; overflow: hidden; border-radius: 8px;">
+                            <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/variants/videos/T_6.mp4"></video>
+                        </div>
+                        <div class="caption">
+                            <div class="x-handwriting">Transparent, glass like structure, suggesting a high tech design.</div>
+                        </div>
+                    </div>
+                </div></div></div></div><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 1);"><div class="x-card">
+                <div class="x-labels">
+                </div>
+                <div class="x-row" style="flex-wrap: wrap;"><div style="margin: 0 16px; flex: 1 0 120px">
+                    <div class="x-column">
+                        <div style="width: 100%; aspect-ratio: 1; overflow: hidden; border-radius: 8px;">
+                            <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/variants/videos/spherical_robot_1.mp4"></video>
+                        </div>
+                        <div class="caption">
+                            <div class="x-handwriting">Rugged, metallic texture with orange and white paint finish, suggesting a durable, industrial feel.</div>
+                        </div>
+                    </div>
+                </div><div style="margin: 0 16px; flex: 1 0 120px">
+                    <div class="x-column">
+                        <div style="width: 100%; aspect-ratio: 1; overflow: hidden; border-radius: 8px;">
+                            <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/variants/videos/spherical_robot_2.mp4"></video>
+                        </div>
+                        <div class="caption">
+                            <div class="x-handwriting">Knitted, fabric-like texture with green and purple colors, featuring playful details.</div>
+                        </div>
+                    </div>
+                </div><div style="margin: 0 16px; flex: 1 0 120px">
+                    <div class="x-column">
+                        <div style="width: 100%; aspect-ratio: 1; overflow: hidden; border-radius: 8px;">
+                            <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/variants/videos/spherical_robot_3.mp4"></video>
+                        </div>
+                        <div class="caption">
+                            <div class="x-handwriting">Rugged, metallic with leather straps and a blue accent, resembling a medieval weapon.</div>
+                        </div>
+                    </div>
+                </div><div style="margin: 0 16px; flex: 1 0 120px">
+                    <div class="x-column">
+                        <div style="width: 100%; aspect-ratio: 1; overflow: hidden; border-radius: 8px;">
+                            <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/variants/videos/spherical_robot_4.mp4"></video>
+                        </div>
+                        <div class="caption">
+                            <div class="x-handwriting">Transparent, glass like structure, suggesting a high tech design.</div>
+                        </div>
+                    </div>
+                </div></div></div></div></div><div class="x-carousel-nav"><div class="x-carousel-switch" onclick="carousel_prev(&#39;results-variants&#39;)">◀</div><div class="x-carousel-pages"><div class="x-carousel-page x-carousel-page-active" onclick="carousel_page(&#39;results-variants&#39;, 0)"></div><div class="x-carousel-page" onclick="carousel_page(&#39;results-variants&#39;, 1)"></div><div class="x-carousel-page" onclick="carousel_page(&#39;results-variants&#39;, 2)"></div><div class="x-carousel-page" onclick="carousel_page(&#39;results-variants&#39;, 3)"></div></div><div class="x-carousel-switch" onclick="carousel_next(&#39;results-variants&#39;)">▶</div></div></div>
+
+            <div class="x-section-title"><div class="x-gradient-font">Editing <span style="font-size: 40px; font-weight:600;">|</span> Local Manipulation</div></div>
+            <p>
+                <span style="font-size: 16px; font-weight: 600;">T</span><span style="font-size: 12px; font-weight: 700;">RELLIS</span>
+                can manipulate targeted local regions of a given 3D asset according to given text or image prompts.
+            </p>
+            <div id="results-manipulation"><div class="x-carousel-slider"><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 1);"><div class="x-card">
+                <div class="x-labels">
+                </div>
+                <div class="x-row" style="flex-wrap: wrap;"><div style="margin: 0 16px; flex: 1 0 120px; position: relative;">
+                    <div class="x-labels">
+                        <div class="x-label">Input</div>
+                    </div>
+                    <div class="x-column">
+                        <div style="width: 100%; aspect-ratio: 1; overflow: hidden; border-radius: 8px;">
+                            <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/local_editing/videos/mech_0.mp4"></video>
+                        </div>
+                        <div class="caption">
+                            <div class="x-handwriting">Battle mech with a humanoid shape.</div>
+                        </div>
+                    </div>
+                </div><div style="margin: 0 16px; flex: 1 0 120px; position: relative;">
+                    <div class="x-labels">
+                        <div class="x-label">Remove Arms</div>
+                    </div>
+                    <div class="x-column">
+                        <div style="width: 100%; aspect-ratio: 1; overflow: hidden; border-radius: 8px;">
+                            <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/local_editing/videos/mech_1.mp4"></video>
+                        </div>
+                        <div class="caption">
+                            <div class="x-handwriting">Battle mech with a humanoid shape, no arms.</div>
+                        </div>
+                    </div>
+                </div><div style="margin: 0 16px; flex: 1 0 120px; position: relative;">
+                    <div class="x-labels">
+                        <div class="x-label">Add Weapons</div>
+                    </div>
+                    <div class="x-column">
+                        <div style="width: 100%; aspect-ratio: 1; overflow: hidden; border-radius: 8px;">
+                            <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/local_editing/videos/mech_2.mp4"></video>
+                        </div>
+                        <div class="caption">
+                            <div class="x-handwriting">Battle mech with huge beam weapons.</div>
+                        </div>
+                    </div>
+                </div><div style="margin: 0 16px; flex: 1 0 120px; position: relative;">
+                    <div class="x-labels">
+                        <div class="x-label">Replace Legs</div>
+                    </div>
+                    <div class="x-column">
+                        <div style="width: 100%; aspect-ratio: 1; overflow: hidden; border-radius: 8px;">
+                            <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/local_editing/videos/mech_3.mp4"></video>
+                        </div>
+                        <div class="caption">
+                            <div class="x-handwriting">Battle mech with tracked chassis.</div>
+                        </div>
+                    </div>
+                </div></div></div></div></div><div class="x-carousel-nav"><div class="x-carousel-switch" onclick="carousel_prev(&#39;results-manipulation&#39;)">◀</div><div class="x-carousel-pages"><div class="x-carousel-page x-carousel-page-active" onclick="carousel_page(&#39;results-manipulation&#39;, 0)"></div><div class="x-carousel-page" onclick="carousel_page(&#39;results-manipulation&#39;, 1)"></div></div><div class="x-carousel-switch" onclick="carousel_next(&#39;results-manipulation&#39;)">▶</div></div></div>
+
+            <div class="x-section-title"><div class="x-gradient-font">Application <span style="font-size: 40px; font-weight:600;">|</span> 3D Art Designs</div></div>
+            <p>
+                Compositing the high-quality 3D assets generated by <span style="font-size: 16px; font-weight: 600;">T</span><span style="font-size: 12px; font-weight: 700;">RELLIS</span>,
+                complex and vibrant 3D art designs can be created with ease.
+            </p>
+            <div id="results-scene"><div class="x-selection-panel-thumbnails"><div class="x-selection-panel-thumbnail x-selection-panel-thumbnail-active" onclick="selection_panel_page(&#39;results-scene&#39;, 0)">
+            <div class="x-selection-panel-thumbnail-inner">
+                <img src="./mdt-dist_files/trellis.jpg" alt="Trellis logo" style="height: 100px;">
+            </div>
+        </div><div class="x-selection-panel-thumbnail" onclick="selection_panel_page(&#39;results-scene&#39;, 1)">
+            <div class="x-selection-panel-thumbnail-inner">
+                <img src="./mdt-dist_files/thumb.jpg" alt="Vibrant street view" style="height: 100px;">
+            </div>
+        </div><div class="x-selection-panel-thumbnail" onclick="selection_panel_page(&#39;results-scene&#39;, 2)">
+            <div class="x-selection-panel-thumbnail-inner">
+                <img src="./mdt-dist_files/thumb(1).jpg" alt="Dwarf blacksmith shop" style="height: 100px;">
+            </div>
+        </div></div><div class="x-selection_panel-content"><div class="x-card">
+                <div class="x-row" style="margin-bottom: 16px">
+                    <div style="font-size: 28px; font-weight: 700; margin-left: 8px"><span style="font-weight: 700;">T</span><span style="font-size: 0.75em; font-weight: 800;">RELLIS</span> logo</div>
+                    <div class="x-flex-spacer"></div>
+                    <div class="x-button" onclick="openWindow(scene_window_template({&quot;title&quot;:&quot;&lt;span style=\&quot;font-weight: 700;\&quot;&gt;T&lt;/span&gt;&lt;span style=\&quot;font-size: 0.75em; font-weight: 800;\&quot;&gt;RELLIS&lt;/span&gt; logo&quot;,&quot;video&quot;:&quot;trellis/trellis.mp4&quot;,&quot;poster&quot;:&quot;trellis/trellis.jpg&quot;,&quot;thumbnail&quot;:&quot;trellis/trellis.jpg&quot;,&quot;alt&quot;:&quot;Trellis logo&quot;,&quot;model&quot;:&quot;trellis/trellis.glb&quot;,&quot;assets&quot;:[{&quot;name&quot;:&quot;T&quot;,&quot;model&quot;:&quot;trellis/glbs/T.glb&quot;,&quot;position&quot;:[0,0,0],&quot;prompt&quot;:&quot;trellis/images/T.png&quot;,&quot;promtp_type&quot;:&quot;image&quot;,&quot;alt&quot;:&quot;Letter T&quot;},{&quot;name&quot;:&quot;R&quot;,&quot;model&quot;:&quot;trellis/glbs/R.glb&quot;,&quot;position&quot;:[1,0,0],&quot;prompt&quot;:&quot;trellis/images/R.png&quot;,&quot;promtp_type&quot;:&quot;image&quot;,&quot;alt&quot;:&quot;Letter R&quot;},{&quot;name&quot;:&quot;E&quot;,&quot;model&quot;:&quot;trellis/glbs/E.glb&quot;,&quot;position&quot;:[2,0,0],&quot;prompt&quot;:&quot;trellis/images/E.png&quot;,&quot;promtp_type&quot;:&quot;image&quot;,&quot;alt&quot;:&quot;Letter E&quot;},{&quot;name&quot;:&quot;L1&quot;,&quot;model&quot;:&quot;trellis/glbs/L1.glb&quot;,&quot;position&quot;:[3,0,0],&quot;prompt&quot;:&quot;trellis/images/L1.png&quot;,&quot;promtp_type&quot;:&quot;image&quot;,&quot;alt&quot;:&quot;Letter L&quot;},{&quot;name&quot;:&quot;L2&quot;,&quot;model&quot;:&quot;trellis/glbs/L2.glb&quot;,&quot;position&quot;:[4,0,0],&quot;prompt&quot;:&quot;trellis/images/L2.png&quot;,&quot;promtp_type&quot;:&quot;image&quot;,&quot;alt&quot;:&quot;Letter L&quot;},{&quot;name&quot;:&quot;I&quot;,&quot;model&quot;:&quot;trellis/glbs/I.glb&quot;,&quot;position&quot;:[4.75,0,0],&quot;prompt&quot;:&quot;trellis/images/I.png&quot;,&quot;promtp_type&quot;:&quot;image&quot;,&quot;alt&quot;:&quot;Letter I&quot;},{&quot;name&quot;:&quot;S&quot;,&quot;model&quot;:&quot;trellis/glbs/S.glb&quot;,&quot;position&quot;:[5.6,0,0],&quot;prompt&quot;:&quot;trellis/images/S.png&quot;,&quot;promtp_type&quot;:&quot;image&quot;,&quot;alt&quot;:&quot;Letter S&quot;}]}))">View GLB</div>
+                </div>
+                <div style="width: 100%; aspect-ratio: 16/9">
+                    <video controls="" muted="" height="100%" src="assets/scenes/trellis/trellis.mp4" poster="assets/scenes/trellis/trellis.jpg"></video>
+                </div>
+            </div></div></div> -->
+
+            <div class="x-section-title"><div class="x-gradient-font">Methodology</div></div>
+            <p>
+                <img src="./mdt-dist_files/framework.png" alt="Pipeline of the method" style="width: 100%;">
+            </p>
+            <p>
+                The primary objective of our framework is to learn the transport from the marginal distribution to the data distribution. 
+                Based on it we propose two optimization objectives: <span style="font-size: 16px; font-weight: 600;">Velocity Matching</span> and <span style="font-size: 16px; font-weight: 600;">Velocity Distillation</span>. 
+                <span style="font-size: 16px; font-weight: 600;">Velocity Matching</span> directly supervises the student model via matching the velocity fields between the student and teacher, 
+                while <span style="font-size: 16px; font-weight: 600;">Velocity Distillation</span> indirectly supervises the student model via matching the marginal distributions between the student and teacher.
+            </p>
+
+            <div class="x-section-title"><div class="x-gradient-font">Citation</div></div>
+            <p>
+                This project page is based on <a class="link" href="https://microsoft.github.io/TRELLIS/">TRELLIS</a>. We sincerely appreciate the excellent works of these authors. 
+                If you find our work useful, please consider citing:
+            </p>
+            <p class="bibtex x-gradient-block">
+@article{mdt-dist,
+    title={Few-step Flow for 3D Generation via Marginal-Data Transport Distillation},
+    author={Zhou, Zanwei and Yi, Taoran and Fang, Jiemin and Yang, Chen and Xie, Lingxi and Wang, Xinggang and Shen, Wei and Tian, Qi}
+    journal={arXiv:2509.04406},
+    year={2025}
+}
+            </p>
+            <!-- <div style="height: 100px;"> </div>
+            <p class="x-note">
+                <b style="line-height: 32px;">Responsible AI Considerations</b><br>
+                <i>
+                    TRELLIS is purely a research project. Responsible AI considerations were factored into all stages. The datasets used in this paper are public and have been reviewed to ensure there is no personally identifiable information or harmful content. However, as these datasets are sourced from the Internet, potential bias may still be present. Currently the model excels at generating artistic-style 3D assets and its capability in generating photorealistic real-world objects is limited.
+                </i>
+            </p> -->
+            <!-- <p class="x-note">
+                <b style="line-height: 32px;">Material Disclaimer</b><br>
+                <i>
+                The materials made available on this page are provided solely for academic and research purposes in connection with the exploration of text-to-3D and image-to-3D generation technologies, as described in the publication accessible at https://arxiv.org/abs/2412.01506. These materials are not intended for commercial exploitation or use.
+If you believe that any content on this page infringes upon your intellectual property rights, including but not limited to copyright, please notify us by submitting a takedown request via email to jiaoyan (at) microsoft.com.
+                </i>
+            </p>
+        </div>
+        <div id="bottombar">
+            <div class="row">
+                <div><span>T<span style="font-size: 10px;">RELLIS</span>:</span> Structured 3D Latents for Scalable and Versatile 3D Generation</div>
+                <div style="display: flex; flex-direction: row; gap: 8px;">
+                    <a href="https://github.com/microsoft/TRELLIS/issues">Contact Us on GitHub</a>
+                    <span style="width: 1px; background-color: rgba(255, 255, 255, 0.7);"></span>
+                    <a href="https://go.microsoft.com/fwlink/?LinkId=521839">Privacy &amp; Cookies</a>
+                    <span style="width: 1px; background-color: rgba(255, 255, 255, 0.7);"></span>
+                    <a href="https://go.microsoft.com/fwlink/?linkid=2259814">Consumer Health Privacy</a>
+                    <span style="width: 1px; background-color: rgba(255, 255, 255, 0.7);"></span>
+                    <a href="https://go.microsoft.com/fwlink/?LinkID=246338">Terms of Use</a>
+                    <span style="width: 1px; background-color: rgba(255, 255, 255, 0.7);"></span>
+                    <a href="https://go.microsoft.com/fwlink/?linkid=2196228">Trademarks</a>
+                    <span style="width: 1px; background-color: rgba(255, 255, 255, 0.7);"></span>
+                    <span>© 2025 Microsoft</span>
+                </div>
+            </div>
+        </div> -->
+    
+<div id="fullscreen">
+        <div id="window">
+            <div id="close" onclick="closeWindow()">✕</div>
+            <div id="content"></div>
+        </div>
+    </div></body><grammarly-desktop-integration data-grammarly-shadow-root="true"><template shadowrootmode="open"><style>
+      div.grammarly-desktop-integration {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select:none;
+        user-select:none;
+      }
+
+      div.grammarly-desktop-integration:before {
+        content: attr(data-content);
+      }
+    </style><div aria-label="grammarly-integration" role="group" tabindex="-1" class="grammarly-desktop-integration" data-content="{&quot;mode&quot;:&quot;full&quot;,&quot;isActive&quot;:true,&quot;isUserDisabled&quot;:false}"></div></template></grammarly-desktop-integration></html>
