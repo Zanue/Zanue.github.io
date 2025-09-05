@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>循环同步视频播放与平移</title>
+  <style>
+    .video-viewport {
+      width: 100%; /* 使用100%宽度自适应父容器 */
+      height: 500px; /* 增加一下高度以获得更好的显示效果 */
+      overflow: hidden;
+      position: relative;
+    }
+    .video-slider {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      will-change: transform;
+    }
+    .video-slider video {
+      height: 100%;
+      width: auto; /* 宽度由比例决定 */
+      object-fit: cover; /* 确保视频填充整个区域 */
+    }
+  </style>
+</head>
+<body>
+  <div class="video-viewport">
+    <div class="video-slider">
+      <video id="myVideo" autoplay loop muted playsinline>
+        <source src="./assets/teaser.mp4" type="video/mp4">
+        您的浏览器不支持 HTML5 视频标签。
+      </video>
+    </div>
+  </div>
+
+  <script>
+    const video = document.getElementById("myVideo");
+    const slider = document.querySelector(".video-slider");
+    const viewport = document.querySelector(".video-viewport");
+
+    function update() {
+      if (video.duration > 0) {
+        const progress = video.currentTime / video.duration;
+        
+        // 计算视频实际尺寸
+        const videoRatio = video.videoWidth / video.videoHeight;
+        const viewportRatio = viewport.clientWidth / viewport.clientHeight;
+        
+        // 基于视口高度计算视频宽度
+        const videoWidth = viewport.clientHeight * videoRatio;
+        const maxTranslate = Math.max(0, videoWidth - viewport.clientWidth);
+
+        // 确保视频从开始到结束完整滑动
+        const offset = -progress * maxTranslate;
+        slider.style.transform = `translateX(${offset}px)`;
+      }
+      requestAnimationFrame(update);
+    }
+
+    video.addEventListener("loadedmetadata", () => {
+      requestAnimationFrame(update);
+    });
+  </script>
+</body>
+</html>
