@@ -177,7 +177,7 @@ video {
     z-index: -1;
     margin: -3px;
     border-radius: 16px;
-    background: linear-gradient(107.54deg, #0091ff .39%, #9370DB 51.23%, #B22222 100%);
+    background: linear-gradient(107.54deg, #303030 .39%, #303030 51.23%, #303030 100%);
 }
 
 .x-section-title {
