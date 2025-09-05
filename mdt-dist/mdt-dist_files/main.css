@@ -147,7 +147,7 @@ video {
 }
 
 .x-gradient-font {
-    background: linear-gradient(107.54deg, #0091ff .39%, #9370DB 51.23%, #B22222 100%);
+    background: linear-gradient(107.54deg, #303030 .39%, #303030 51.23%, #303030 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -155,7 +155,7 @@ video {
 
 .x-gradient-block {
     color: #3f3f3f;
-    background: linear-gradient(107.54deg, #e6eff7 .39%, #eeebf5 51.23%, #fcf4ee 100%);
+    background: linear-gradient(107.54deg, #e8eef4 .39%, #eceaf4 51.23%, #f9eeee 100%);
     border-radius: 16px;
 }
 
