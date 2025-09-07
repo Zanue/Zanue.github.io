@@ -318,11 +318,12 @@ function modelviewer_window_template(item, panel, config) {
                         camera-controls
                         auto-rotate
                         tone-mapping="natural"
-                        shadow-softness="50"
-                        shadow-intensity="50"
+                        shadow-softness="1.0"
+                        shadow-intensity="1.0"
                         environment-image="neutral"
-                        exposure="1"
-                        >`
+                        exposure="${item.exposure}"
+                        >
+                        <hemisphere-light sky-color="#FFF" ground-color="#999" intensity="2.0"></hemisphere-light>`
     if (show_annotations) {
         window_state.assets = item.assets;
         window_state.prompt_template = item.prompt_template;

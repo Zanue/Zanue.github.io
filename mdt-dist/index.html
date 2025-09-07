@@ -19,8 +19,8 @@
         <script src="./mdt-dist_files/editing.js.下载"></script>
         <script src="./mdt-dist_files/application.js.下载"></script>
 		<script src="./mdt-dist_files/main.js.下载"></script>
-        <!-- <script type="module" src="./mdt-dist_files/model-viewer.min.js.下载"></script> -->
-        <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js"></script>
+        <!-- <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js"></script> -->
+        <script type="module" src="./mdt-dist_files/model-viewer.min.js"></script>
     </head>
     <body data-new-gr-c-s-check-loaded="14.1251.0" data-gr-ext-installed="">
         <div id="main">
@@ -93,109 +93,213 @@
                 and enables TRELLIS to achieve superior performance in few-step 3D generation. 
             </div>
             
-            
-            <!-- <div class="x-section-title"><div class="x-gradient-font">Generation <span style="font-size: 40px; font-weight:600;">|</span>1 step x 2 </div></div>
-            <p><sup>*</sup>Note the meshes here have been simplfied and hole-filled, and the texture is baked from generated GS. Currently we are working on the GS viewer. 
-                GS and unprocessed meshes will be released later. Click on the cards to view extracted GLB files.</p>
-            <div id="results-img2"><div class="x-carousel-slider"><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;video&quot;:&quot;trellis.mp4&quot;,&quot;prompt&quot;:&quot;trellis.png&quot;,&quot;model&quot;:&quot;trellis.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A detailed trellis structure&quot;}))">
+            <p class="x-note">
+                <i><sup>*</sup>Note <b>only in this page</b> the loaded meshes are simplfied and hole-filled, and their textures are baked from generated GS. This is for the convenience of visualization.
+                The videos here are rendered from GS. Currently we are working on the GS viewer, the original GS and unprocessed meshes will be released later. 
+                Click on the cards to view extracted GLB files.</i>
+            </p>
+            <div class="x-section-title"><div class="x-gradient-font">Generation <span style="font-size: 40px; font-weight:600;">|</span> 1 step x 2 </div></div>
+            <p>Click on the cards to view extracted GLB files.</p>
+            <div id="results-img2"><div class="x-carousel-slider"><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;exposure&quot;:&quot;2.0&quot;,&quot;video&quot;:&quot;073.mp4&quot;,&quot;prompt&quot;:&quot;073.png&quot;,&quot;model&quot;:&quot;073-1.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A detailed trellis structure&quot;}))">
                 <div class="x-labels">
                     <div class="x-label">GLB ✓</div>
                 </div>
-                <div style="width: 100%; aspect-ratio: 1">
-                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="./mdt-dist_files/demo_video.mp4"></video>
+                <div style="width: 100%; aspect-ratio: 3/2">
+                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="./assets/videos/073-1.mov"></video>
                 </div>
                 <div class="caption">
                     <div class="x-image-prompt">
                         <img src="./assets/img2/images/073.png" alt="A detailed trellis structure">
                     </div>
                 </div>
-            </div></div><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;video&quot;:&quot;073.mp4&quot;,&quot;prompt&quot;:&quot;073.png&quot;,&quot;model&quot;:&quot;073-2.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A machine for processing paper&quot;}))">
+            </div></div><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;exposure&quot;:&quot;2.0&quot;,&quot;video&quot;:&quot;typical_humanoid_dwarf.mp4&quot;,&quot;prompt&quot;:&quot;typical_humanoid_dwarf.png&quot;,&quot;model&quot;:&quot;typical_humanoid_dwarf-1.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A machine for processing paper&quot;}))">
                 <div class="x-labels">
                     <div class="x-label">GLB ✓</div>
                 </div>
-                <div style="width: 100%; aspect-ratio: 1">
-                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="./assets/videos/073.mov"></video>
+                <div style="width: 100%; aspect-ratio: 3/2">
+                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="./assets/videos/typical_humanoid_dwarf-1.mov"></video>
                 </div>
                 <div class="caption">
                     <div class="x-image-prompt">
-                        <img src="./assets/img2/images/073.png" alt="A machine for processing paper">
+                        <img src="./assets/img2/images/typical_humanoid_dwarf.png" alt="A machine for processing paper">
                     </div>
                 </div>
-            </div></div><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;video&quot;:&quot;ship.mp4&quot;,&quot;prompt&quot;:&quot;ship.png&quot;,&quot;model&quot;:&quot;ship.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A large sailing ship&quot;}))">
+            </div></div><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;exposure&quot;:&quot;2.0&quot;,&quot;video&quot;:&quot;888.mp4&quot;,&quot;prompt&quot;:&quot;888.png&quot;,&quot;model&quot;:&quot;888-1.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A large sailing ship&quot;}))">
                 <div class="x-labels">
                     <div class="x-label">GLB ✓</div>
                 </div>
-                <div style="width: 100%; aspect-ratio: 1">
-                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/img2/videos/ship.mp4"></video>
+                <div style="width: 100%; aspect-ratio: 3/2">
+                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="./assets/videos/888-1.mov"></video>
                 </div>
                 <div class="caption">
                     <div class="x-image-prompt">
-                        <img src="./mdt-dist_files/ship.png" alt="A large sailing ship">
+                        <img src="./assets/img2/images/888.png" alt="A large sailing ship">
                     </div>
                 </div>
-            </div></div><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;video&quot;:&quot;food_cart.mp4&quot;,&quot;prompt&quot;:&quot;food_cart.png&quot;,&quot;model&quot;:&quot;food_cart.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A food cart on a busy street&quot;}))">
+            </div></div><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;exposure&quot;:&quot;2.0&quot;,&quot;video&quot;:&quot;typical_vehicle_cart.mp4&quot;,&quot;prompt&quot;:&quot;typical_vehicle_cart.png&quot;,&quot;model&quot;:&quot;typical_vehicle_cart-1.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A food cart on a busy street&quot;}))">
                 <div class="x-labels">
                     <div class="x-label">GLB ✓</div>
                 </div>
-                <div style="width: 100%; aspect-ratio: 1">
-                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/img2/videos/food_cart.mp4"></video>
+                <div style="width: 100%; aspect-ratio: 3/2">
+                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="./assets/videos/typical_vehicle_cart-1.mov"></video>
                 </div>
                 <div class="caption">
                     <div class="x-image-prompt">
-                        <img src="./mdt-dist_files/food_cart.png" alt="A food cart on a busy street">
+                        <img src="./assets/img2/images/typical_vehicle_cart.png" alt="A food cart on a busy street">
                     </div>
                 </div>
-            </div></div><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;video&quot;:&quot;loong.mp4&quot;,&quot;prompt&quot;:&quot;loong.png&quot;,&quot;model&quot;:&quot;loong.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A mythical Chinese dragon&quot;}))">
+            </div></div><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;exposure&quot;:&quot;2.0&quot;,&quot;video&quot;:&quot;1123.mp4&quot;,&quot;prompt&quot;:&quot;1123.png&quot;,&quot;model&quot;:&quot;1123-1.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A mythical Chinese dragon&quot;}))">
                 <div class="x-labels">
                     <div class="x-label">GLB ✓</div>
                 </div>
-                <div style="width: 100%; aspect-ratio: 1">
-                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/img2/videos/loong.mp4"></video>
+                <div style="width: 100%; aspect-ratio: 3/2">
+                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/videos/1123-1.mov"></video>
                 </div>
                 <div class="caption">
                     <div class="x-image-prompt">
-                        <img src="./mdt-dist_files/loong.png" alt="A mythical Chinese dragon">
+                        <img src="./assets/img2/images/1123.png" alt="A mythical Chinese dragon">
                     </div>
                 </div>
-            </div></div><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;video&quot;:&quot;mech.mp4&quot;,&quot;prompt&quot;:&quot;mech.png&quot;,&quot;model&quot;:&quot;mech.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A futuristic robot mech&quot;}))">
+            </div></div><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;exposure&quot;:&quot;2.0&quot;,&quot;video&quot;:&quot;typical_humanoid_block_robot.mp4&quot;,&quot;prompt&quot;:&quot;typical_humanoid_block_robot.png&quot;,&quot;model&quot;:&quot;typical_humanoid_block_robot-1.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A futuristic robot mech&quot;}))">
                 <div class="x-labels">
                     <div class="x-label">GLB ✓</div>
                 </div>
-                <div style="width: 100%; aspect-ratio: 1">
-                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/img2/videos/mech.mp4"></video>
+                <div style="width: 100%; aspect-ratio: 3/2">
+                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/videos/typical_humanoid_block_robot-1.mov"></video>
                 </div>
                 <div class="caption">
                     <div class="x-image-prompt">
-                        <img src="./mdt-dist_files/mech.png" alt="A futuristic robot mech">
+                        <img src="./assets/img2/images/typical_humanoid_block_robot.png" alt="A futuristic robot mech">
                     </div>
                 </div>
-            </div></div><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;video&quot;:&quot;castle.mp4&quot;,&quot;prompt&quot;:&quot;castle.png&quot;,&quot;model&quot;:&quot;castle.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A medieval castle with high towers&quot;}))">
+            </div></div><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;exposure&quot;:&quot;2.0&quot;,&quot;video&quot;:&quot;1583.mp4&quot;,&quot;prompt&quot;:&quot;1583.png&quot;,&quot;model&quot;:&quot;1583-1.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A medieval castle with high towers&quot;}))">
                 <div class="x-labels">
                     <div class="x-label">GLB ✓</div>
                 </div>
-                <div style="width: 100%; aspect-ratio: 1">
-                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/img2/videos/castle.mp4"></video>
+                <div style="width: 100%; aspect-ratio: 3/2">
+                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/videos/1583-1.mov"></video>
                 </div>
                 <div class="caption">
                     <div class="x-image-prompt">
-                        <img src="./mdt-dist_files/castle.png" alt="A medieval castle with high towers">
+                        <img src="./assets/img2/images/1583.png" alt="A medieval castle with high towers">
                     </div>
                 </div>
-            </div></div><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;video&quot;:&quot;toolbox.mp4&quot;,&quot;prompt&quot;:&quot;toolbox.png&quot;,&quot;model&quot;:&quot;toolbox.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A toolbox filled with tools&quot;}))">
+            </div></div><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;exposure&quot;:&quot;2.0&quot;,&quot;video&quot;:&quot;1735.mp4&quot;,&quot;prompt&quot;:&quot;1735.png&quot;,&quot;model&quot;:&quot;1735-1.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A toolbox filled with tools&quot;}))">
                 <div class="x-labels">
                     <div class="x-label">GLB ✓</div>
                 </div>
-                <div style="width: 100%; aspect-ratio: 1">
-                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/img2/videos/toolbox.mp4"></video>
+                <div style="width: 100%; aspect-ratio: 3/2">
+                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/videos/1735-1.mov"></video>
                 </div>
                 <div class="caption">
                     <div class="x-image-prompt">
-                        <img src="./mdt-dist_files/toolbox.png" alt="A toolbox filled with tools">
+                        <img src="./assets/img2/images/1735.png" alt="A toolbox filled with tools">
                     </div>
                 </div>
-            </div></div></div><div class="x-carousel-nav"><div class="x-carousel-switch" onclick="carousel_prev(&#39;results-img2&#39;)">◀</div><div class="x-carousel-pages"><div class="x-carousel-page x-carousel-page-active" onclick="carousel_page(&#39;results-img2&#39;, 0)"></div><div class="x-carousel-page" onclick="carousel_page(&#39;results-img2&#39;, 1)"></div><div class="x-carousel-page" onclick="carousel_page(&#39;results-img2&#39;, 2)"></div><div class="x-carousel-page" onclick="carousel_page(&#39;results-img2&#39;, 3)"></div><div class="x-carousel-page" onclick="carousel_page(&#39;results-img2&#39;, 4)"></div></div><div class="x-carousel-switch" onclick="carousel_next(&#39;results-img2&#39;)">▶</div></div></div> -->
+            </div></div></div></div>
+            
             
 
+            <div class="x-section-title"><div class="x-gradient-font">Generation <span style="font-size: 40px; font-weight:600;">|</span> 2 steps x 2 </div></div>
+            <p>Click on the cards to view extracted GLB files.</p>
+            <div id="results-img2"><div class="x-carousel-slider"><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;exposure&quot;:&quot;2.0&quot;,&quot;video&quot;:&quot;1738.mp4&quot;,&quot;prompt&quot;:&quot;1738.png&quot;,&quot;model&quot;:&quot;1738-2.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A detailed trellis structure&quot;}))">
+                <div class="x-labels">
+                    <div class="x-label">GLB ✓</div>
+                </div>
+                <div style="width: 100%; aspect-ratio: 3/2">
+                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="./assets/videos/1738-2.mov"></video>
+                </div>
+                <div class="caption">
+                    <div class="x-image-prompt">
+                        <img src="./assets/img2/images/1738.png" alt="A detailed trellis structure">
+                    </div>
+                </div>
+            </div></div><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;exposure&quot;:&quot;2.0&quot;,&quot;video&quot;:&quot;1772.mp4&quot;,&quot;prompt&quot;:&quot;1772.png&quot;,&quot;model&quot;:&quot;1772-2.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A machine for processing paper&quot;}))">
+                <div class="x-labels">
+                    <div class="x-label">GLB ✓</div>
+                </div>
+                <div style="width: 100%; aspect-ratio: 3/2">
+                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="./assets/videos/1772-2.mov"></video>
+                </div>
+                <div class="caption">
+                    <div class="x-image-prompt">
+                        <img src="./assets/img2/images/1772.png" alt="A machine for processing paper">
+                    </div>
+                </div>
+            </div></div><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;exposure&quot;:&quot;2.0&quot;,&quot;video&quot;:&quot;1029.mp4&quot;,&quot;prompt&quot;:&quot;1029.png&quot;,&quot;model&quot;:&quot;1029-2.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A large sailing ship&quot;}))">
+                <div class="x-labels">
+                    <div class="x-label">GLB ✓</div>
+                </div>
+                <div style="width: 100%; aspect-ratio: 3/2">
+                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/videos/1029-2.mov"></video>
+                </div>
+                <div class="caption">
+                    <div class="x-image-prompt">
+                        <img src="./assets/img2/images/1029.png" alt="A large sailing ship">
+                    </div>
+                </div>
+            </div></div><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;exposure&quot;:&quot;2.0&quot;,&quot;video&quot;:&quot;Camera_1040g34o31hmv1te73a3048jtdvj4c5rbhtrtu98.mp4&quot;,&quot;prompt&quot;:&quot;Camera_1040g34o31hmv1te73a3048jtdvj4c5rbhtrtu98.png&quot;,&quot;model&quot;:&quot;Camera_1040g34o31hmv1te73a3048jtdvj4c5rbhtrtu98-2.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A food cart on a busy street&quot;}))">
+                <div class="x-labels">
+                    <div class="x-label">GLB ✓</div>
+                </div>
+                <div style="width: 100%; aspect-ratio: 3/2">
+                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/videos/Camera_1040g34o31hmv1te73a3048jtdvj4c5rbhtrtu98-2.mov"></video>
+                </div>
+                <div class="caption">
+                    <div class="x-image-prompt">
+                        <img src="./assets/img2/images/Camera_1040g34o31hmv1te73a3048jtdvj4c5rbhtrtu98.png" alt="A food cart on a busy street">
+                    </div>
+                </div>
+            </div></div><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;exposure&quot;:&quot;2.0&quot;,&quot;video&quot;:&quot;Camera_1040g34o31hnup72ck24g5nue8l108b6nb88hkf8.mp4&quot;,&quot;prompt&quot;:&quot;Camera_1040g34o31hnup72ck24g5nue8l108b6nb88hkf8.png&quot;,&quot;model&quot;:&quot;Camera_1040g34o31hnup72ck24g5nue8l108b6nb88hkf8-2.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A mythical Chinese dragon&quot;}))">
+                <div class="x-labels">
+                    <div class="x-label">GLB ✓</div>
+                </div>
+                <div style="width: 100%; aspect-ratio: 3/2">
+                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/videos/Camera_1040g34o31hnup72ck24g5nue8l108b6nb88hkf8-2.mov"></video>
+                </div>
+                <div class="caption">
+                    <div class="x-image-prompt">
+                        <img src="./assets/img2/images/Camera_1040g34o31hnup72ck24g5nue8l108b6nb88hkf8.png" alt="A mythical Chinese dragon">
+                    </div>
+                </div>
+            </div></div><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;exposure&quot;:&quot;2.0&quot;,&quot;video&quot;:&quot;Camera_XHS_17478460238811040g00831hoen1ga3u0g5oha0d441i3j1s6i7eo.mp4&quot;,&quot;prompt&quot;:&quot;Camera_XHS_17478460238811040g00831hoen1ga3u0g5oha0d441i3j1s6i7eo.png&quot;,&quot;model&quot;:&quot;Camera_XHS_17478460238811040g00831hoen1ga3u0g5oha0d441i3j1s6i7eo-2.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A futuristic robot mech&quot;}))">
+                <div class="x-labels">
+                    <div class="x-label">GLB ✓</div>
+                </div>
+                <div style="width: 100%; aspect-ratio: 3/2">
+                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/videos/Camera_XHS_17478460238811040g00831hoen1ga3u0g5oha0d441i3j1s6i7eo-2.mov"></video>
+                </div>
+                <div class="caption">
+                    <div class="x-image-prompt">
+                        <img src="./assets/img2/images/Camera_XHS_17478460238811040g00831hoen1ga3u0g5oha0d441i3j1s6i7eo.png" alt="A futuristic robot mech">
+                    </div>
+                </div>
+            </div></div><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;exposure&quot;:&quot;2.0&quot;,&quot;video&quot;:&quot;jimeng2.mp4&quot;,&quot;prompt&quot;:&quot;jimeng2.png&quot;,&quot;model&quot;:&quot;jimeng2-2.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A medieval castle with high towers&quot;}))">
+                <div class="x-labels">
+                    <div class="x-label">GLB ✓</div>
+                </div>
+                <div style="width: 100%; aspect-ratio: 3/2">
+                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/videos/jimeng2-2.mov"></video>
+                </div>
+                <div class="caption">
+                    <div class="x-image-prompt">
+                        <img src="./assets/img2/images/jimeng2.png" alt="A medieval castle with high towers">
+                    </div>
+                </div>
+            </div></div><div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);"><div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;exposure&quot;:&quot;2.0&quot;,&quot;video&quot;:&quot;typical_misc_monster_chest.mp4&quot;,&quot;prompt&quot;:&quot;typical_misc_monster_chest.png&quot;,&quot;model&quot;:&quot;typical_misc_monster_chest-2.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A toolbox filled with tools&quot;}))">
+                <div class="x-labels">
+                    <div class="x-label">GLB ✓</div>
+                </div>
+                <div style="width: 100%; aspect-ratio: 3/2">
+                    <video autoplay="" playsinline="" loop="" muted="" height="100%" src="assets/videos/typical_misc_monster_chest-2.mov"></video>
+                </div>
+                <div class="caption">
+                    <div class="x-image-prompt">
+                        <img src="./assets/img2/images/typical_misc_monster_chest.png" alt="A toolbox filled with tools">
+                    </div>
+                </div>
+            </div></div></div></div>
+            
             
             <div class="x-section-title"><div class="x-gradient-font">Methodology</div></div>
             <p>
