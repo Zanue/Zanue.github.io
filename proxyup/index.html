@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="ProxyUp: Training-Free Proxy-Conditioned Video Generation for Controllable Dynamics."
+    />
+    <title>ProxyUp</title>
+    <link rel="icon" href="assets/logo/logo.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav">
+        <a class="brand" href="#top" aria-label="ProxyUp home">
+          <img class="brand-logo" src="assets/logo/logo.png" alt="" aria-hidden="true" />
+          <span>ProxyUp</span>
+        </a>
+        <div class="nav-links" aria-label="Page sections">
+          <a href="#abstract">Abstract</a>
+          <a href="#method">Method</a>
+          <a href="#demos">Demos</a>
+          <a href="#bibtex">BibTeX</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="container hero-inner">
+          <img class="hero-logo" src="assets/logo/logo1.png" alt="ProxyUp logo" />
+          <h1>
+            <span class="title-desktop">ProxyUp: Training-Free Proxy-Conditioned Video Generation for Controllable Dynamics</span>
+            <span class="title-mobile">
+              ProxyUp:<br />
+              Training-Free<br />
+              Proxy-Conditioned<br />
+              Video Generation<br />
+              for Controllable<br />
+              Dynamics
+            </span>
+          </h1>
+          <p class="authors">
+            Zanwei Zhou<sup>1,*</sup>, Jiazhong Cen<sup>1,*</sup>,
+            <br class="mobile-only-break" />
+            Jiemin Fang<sup>2,&dagger;</sup>, Yumeng He<sup>1</sup>,
+            <br class="mobile-only-break" />
+            Chen Yang<sup>2</sup>, Sikuang Li<sup>1</sup>,
+            <br class="mobile-only-break" />
+            Fanpeng Meng<sup>2</sup>, Zhikuan Bao<sup>2</sup>,
+            <br class="mobile-only-break" />
+            Wei Shen<sup>1,&dagger;</sup>,
+            Qi Tian<sup>2,&dagger;</sup>
+          </p>
+          <p class="affiliations">
+            <sup>1</sup>Shanghai Jiao Tong University
+            <br class="mobile-only-break" />
+            <sup>2</sup>Huawei Inc.
+          </p>
+          <p class="author-notes">
+            <sup>*</sup>Equal contribution.
+            <br class="mobile-only-break" />
+            Work done during internship at Huawei.
+            <br class="mobile-only-break" />
+            <sup>&dagger;</sup>Corresponding author.
+          </p>
+          <div class="resource-row" aria-label="Project resources">
+            <span class="resource muted">
+              Paper <small>Coming soon</small>
+            </span>
+            <a class="resource" href="https://github.com/Zanue/ProxyUp" target="_blank" rel="noreferrer">
+              Code <small>GitHub</small>
+            </a>
+            <span class="resource muted">
+              Data <small>Coming soon</small>
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <section class="media-band">
+        <div class="container">
+          <div class="gallery-heading">
+            <h2>Gallery</h2>
+          </div>
+          <div class="video-feature">
+            <button class="gallery-button gallery-button-prev" type="button" data-gallery-prev aria-label="Previous video" title="Previous video"><span>&lsaquo;</span></button>
+            <video
+              data-src="assets/videos/demos_small_proxy_blender_part01.mp4"
+              data-playlist="assets/videos/demos_small_proxy_blender_part01.mp4,assets/videos/demos_small_proxy_blender_part02.mp4,assets/videos/demos_small_proxy_blender_part03.mp4,assets/videos/demos_small_proxy_blender_part04.mp4,assets/videos/demos_small_proxy_blender_part05.mp4,assets/videos/demos_small_proxy_articulation_part01.mp4,assets/videos/demos_small_proxy_articulation_part02.mp4,assets/videos/demos_small_proxy_articulation_part03.mp4,assets/videos/demos_small_proxy_articulation_part04.mp4"
+              preload="metadata"
+              muted
+              autoplay
+              playsinline
+              controls
+            ></video>
+            <button class="gallery-button gallery-button-next" type="button" data-gallery-next aria-label="Next video" title="Next video"><span>&rsaquo;</span></button>
+          </div>
+          <div class="gallery-caption" aria-live="polite">
+            <p class="gallery-prompt" data-gallery-prompt></p>
+            <p class="gallery-source" data-gallery-source></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="abstract">
+        <div class="container narrow">
+          <h2>Abstract</h2>
+          <p>
+            Precise control over complex dynamics remains challenging for modern video generative
+            models, as text prompts alone often cannot specify physically plausible, fine-grained
+            motion and interactions. We introduce <strong>proxy-conditioned video generation</strong>,
+            where a coarse proxy video from physics-based simulation or real-world recording serves
+            as a dynamics carrier to control foreground object motion.
+          </p>
+          <p>
+            Given a proxy video and a text prompt, the goal is to synthesize a new video that
+            preserves the proxy dynamics while generating novel content and plausible interactions
+            aligned with the prompt. Since paired proxy-target videos are difficult to obtain, we
+            propose <strong>ProxyUp</strong>, a training-free framework built on pretrained video
+            generative models.
+          </p>
+          <p>
+            ProxyUp first inverts the proxy video into an intermediate latent representation and
+            applies <strong>region-wise latent noising</strong>, preserving motion-critical proxy
+            latents while injecting noise into regions intended for text-driven regeneration. To
+            mitigate the distribution mismatch and weak foreground-background coupling introduced
+            by this heuristic latent composition, we further propose
+            <strong>Stochastic Flow Relaxation</strong>, which progressively relaxes the composed
+            latent toward the model's learned distribution before ODE sampling. Experiments on both
+            simulation and real-world proxies show that ProxyUp outperforms strong video editing and
+            motion transfer baselines in dynamic fidelity and text alignment.
+          </p>
+        </div>
+      </section>
+
+      <section class="section section-muted" id="method">
+        <div class="container">
+          <div class="section-heading">
+            <h2>Method</h2>
+          </div>
+          <figure class="paper-figure">
+            <img src="assets/images/method.png" alt="ProxyUp method pipeline." />
+          </figure>
+        </div>
+      </section>
+
+      <section class="section" id="demos">
+        <div class="container">
+          <div class="section-heading">
+            <h2>Selected Video Results</h2>
+          </div>
+
+          <section class="demo-group" aria-labelledby="baseline-comparison-title">
+            <div class="demo-heading">
+              <h3 id="baseline-comparison-title">Baseline Comparison</h3>
+            </div>
+            <div class="result-suite">
+              <div class="video-grid method-comparison-grid">
+                <article class="video-card">
+                  <video data-src="assets/videos/10_slide06_05_Proxy_Video_Wan2_2_T2V_A14B_DiTFlow_Ours_FlowDirector.mp4" preload="metadata" muted autoplay loop playsinline controls></video>
+                  <h3>Proxy Video</h3>
+                </article>
+                <article class="video-card">
+                  <video data-src="assets/videos/08_slide06_04_Proxy_Video_Wan2_2_T2V_A14B_DiTFlow_Ours_FlowDirector.mp4" preload="metadata" muted autoplay loop playsinline controls></video>
+                  <h3>Wan2.2 T2V-A14B</h3>
+                </article>
+                <article class="video-card">
+                  <video data-src="assets/videos/13_slide06_03_Proxy_Video_Wan2_2_T2V_A14B_DiTFlow_Ours_FlowDirector.mp4" preload="metadata" muted autoplay loop playsinline controls></video>
+                  <h3>VACE</h3>
+                </article>
+                <article class="video-card">
+                  <video data-src="assets/videos/12_slide06_06_Proxy_Video_Wan2_2_T2V_A14B_DiTFlow_Ours_FlowDirector.mp4" preload="metadata" muted autoplay loop playsinline controls></video>
+                  <h3>DiTFlow</h3>
+                </article>
+                <article class="video-card">
+                  <video data-src="assets/videos/09_slide06_02_Proxy_Video_Wan2_2_T2V_A14B_DiTFlow_Ours_FlowDirector.mp4" preload="metadata" muted autoplay loop playsinline controls></video>
+                  <h3>FlowDirector</h3>
+                </article>
+                <article class="video-card">
+                  <video data-src="assets/videos/11_slide06_01_Proxy_Video_Wan2_2_T2V_A14B_DiTFlow_Ours_FlowDirector.mp4" preload="metadata" muted autoplay loop playsinline controls></video>
+                  <h3>Ours</h3>
+                </article>
+              </div>
+            </div>
+            <details class="prompt-toggle baseline-prompt">
+              <summary class="prompt-summary">Click to view Prompt</summary>
+              <p class="prompt-text">Cinematic shot in a kitchen. Front view of a piece of bread. The bread rests on a wooden table, surrounded by various kitchen utensils. A person stands behind the bread holding a sharp knife. They perform a downward slicing motion through the bread, slide the cut slice away, and repeat this specific sequence three times in a row. Soft natural lighting, 4k resolution.</p>
+            </details>
+            <div class="result-suite">
+              <div class="video-grid method-comparison-grid">
+                <article class="video-card">
+                  <video data-src="assets/videos/17_slide07_01_Proxy_Video_Wan2_2_T2V_A14B_DiTFlow_Ours_FlowDirector.mp4" preload="metadata" muted autoplay loop playsinline controls></video>
+                  <h3>Proxy Video</h3>
+                </article>
+                <article class="video-card">
+                  <video data-src="assets/videos/14_slide07_04_Proxy_Video_Wan2_2_T2V_A14B_DiTFlow_Ours_FlowDirector.mp4" preload="metadata" muted autoplay loop playsinline controls></video>
+                  <h3>Wan2.2 T2V-A14B</h3>
+                </article>
+                <article class="video-card">
+                  <video data-src="assets/videos/19_slide07_03_Proxy_Video_Wan2_2_T2V_A14B_DiTFlow_Ours_FlowDirector.mp4" preload="metadata" muted autoplay loop playsinline controls></video>
+                  <h3>VACE</h3>
+                </article>
+                <article class="video-card">
+                  <video data-src="assets/videos/18_slide07_06_Proxy_Video_Wan2_2_T2V_A14B_DiTFlow_Ours_FlowDirector.mp4" preload="metadata" muted autoplay loop playsinline controls></video>
+                  <h3>DiTFlow</h3>
+                </article>
+                <article class="video-card">
+                  <video data-src="assets/videos/15_slide07_02_Proxy_Video_Wan2_2_T2V_A14B_DiTFlow_Ours_FlowDirector.mp4" preload="metadata" muted autoplay loop playsinline controls></video>
+                  <h3>FlowDirector</h3>
+                </article>
+                <article class="video-card">
+                  <video data-src="assets/videos/16_slide07_05_Proxy_Video_Wan2_2_T2V_A14B_DiTFlow_Ours_FlowDirector.mp4" preload="metadata" muted autoplay loop playsinline controls></video>
+                  <h3>Ours</h3>
+                </article>
+              </div>
+            </div>
+            <details class="prompt-toggle baseline-prompt">
+              <summary class="prompt-summary">Click to view Prompt</summary>
+              <p class="prompt-text">A person stands in front of a large floor-to-ceiling window with two panels of light, flowing curtains drawn closed in the center. With both hands, they grasp the inner edges of the curtains and smoothly pull them outward in opposite directions. Sunlight gradually floods into the room as the curtains part, revealing a bright outdoor view.</p>
+            </details>
+          </section>
+
+          <section class="demo-group" aria-labelledby="prompt-diversity-title">
+            <div class="demo-heading">
+              <h3 id="prompt-diversity-title">Prompt Diversity</h3>
+            </div>
+            <div class="prompt-suite">
+              <div class="video-grid prompt-grid">
+                <article class="video-card">
+                  <video data-src="assets/videos/20_slide09_03_Proxy_Video_Text_Prompt_Cozy_study_room_dark_wood_grai.mp4" preload="metadata" muted autoplay loop playsinline controls></video>
+                </article>
+                <article class="video-card">
+                  <video data-src="assets/videos/21_slide09_02_Proxy_Video_Text_Prompt_Cozy_study_room_dark_wood_grai.mp4" preload="metadata" muted autoplay loop playsinline controls></video>
+                  <p class="prompt-text">Cozy study room, dark wood grain desk, warm yellow lamp lighting. A vintage hardcover book stands upright, a baseball resting tightly to its right. Heavy book topples onto baseball, then slides down off the baseball.</p>
+                </article>
+                <article class="video-card">
+                  <video data-src="assets/videos/22_slide09_04_Proxy_Video_Text_Prompt_Cozy_study_room_dark_wood_grai.mp4" preload="metadata" muted autoplay loop playsinline controls></video>
+                  <p class="prompt-text">Minimalist style, white matte table, bright natural daylight, blurred city view through floor-to-ceiling windows in background. Modern book and white baseball. Hand pushes book over, it hits the ball, slowly slides down off the baseball, high definition, realistic physics simulation.</p>
+                </article>
+                <article class="video-card">
+                  <video data-src="assets/videos/23_slide09_01_Proxy_Video_Text_Prompt_Cozy_study_room_dark_wood_grai.mp4" preload="metadata" muted autoplay loop playsinline controls></video>
+                  <p class="prompt-text">Cinematic moody lighting, spotlight focused on desk, floating dust particles, high contrast shadows. Heavy book topples onto baseball, slow-motion feel, inertia slides it down off the baseball, dramatic lighting.</p>
+                </article>
+              </div>
+            </div>
+
+            <div class="prompt-suite">
+              <div class="video-grid prompt-grid">
+                <article class="video-card">
+                  <video data-src="assets/videos/24_slide10_03_Proxy_Video_Text_Prompt_An_AI_research_facility_A_smal.mp4" preload="metadata" muted autoplay loop playsinline controls></video>
+                </article>
+                <article class="video-card">
+                  <video data-src="assets/videos/26_slide10_04_Proxy_Video_Text_Prompt_An_AI_research_facility_A_smal.mp4" preload="metadata" muted autoplay loop playsinline controls></video>
+                  <p class="prompt-text">An AI research facility. A small tabletop robotic arm performs a precision tap on the first domino to collect physics interaction data.</p>
+                </article>
+                <article class="video-card">
+                  <video data-src="assets/videos/25_slide10_02_Proxy_Video_Text_Prompt_An_AI_research_facility_A_smal.mp4" preload="metadata" muted autoplay loop playsinline controls></video>
+                  <p class="prompt-text">A mahogany office desk. A businessman flicks the first wooden domino, making the five pieces topple one by one.</p>
+                </article>
+                <article class="video-card">
+                  <video data-src="assets/videos/27_slide10_01_Proxy_Video_Text_Prompt_An_AI_research_facility_A_smal.mp4" preload="metadata" muted autoplay loop playsinline controls></video>
+                  <p class="prompt-text">A clean workbench. A soft-robotic finger gently pushes the top of the first domino, initiating a chain reaction through the sequence of five.</p>
+                </article>
+              </div>
+            </div>
+
+            <div class="prompt-suite">
+              <div class="video-grid prompt-grid">
+                <article class="video-card">
+                  <video data-src="assets/videos/31_slide11_01_Text_Prompt_An_outdoor_park_bench_A_person_pushes_the.mp4" preload="metadata" muted autoplay loop playsinline controls></video>
+                </article>
+                <article class="video-card">
+                  <video data-src="assets/videos/28_slide11_03_Text_Prompt_An_outdoor_park_bench_A_person_pushes_the.mp4" preload="metadata" muted autoplay loop playsinline controls></video>
+                  <p class="prompt-text">An outdoor park bench. A person pushes the first of five standing notebooks, knocking them all down in succession.</p>
+                </article>
+                <article class="video-card">
+                  <video data-src="assets/videos/30_slide11_04_Text_Prompt_An_outdoor_park_bench_A_person_pushes_the.mp4" preload="metadata" muted autoplay loop playsinline controls></video>
+                  <p class="prompt-text">A cozy bedroom. Someone nudges a standing comic book, causing a line of five books on the desk to fall over.</p>
+                </article>
+                <article class="video-card">
+                  <video data-src="assets/videos/29_slide11_02_Text_Prompt_An_outdoor_park_bench_A_person_pushes_the.mp4" preload="metadata" muted autoplay loop playsinline controls></video>
+                  <p class="prompt-text">A modern office space. A mobile manipulator robot extends its gripper to push the edge of a standing folder, knocking down a row of five books.</p>
+                </article>
+              </div>
+            </div>
+
+            <div class="prompt-suite">
+              <div class="video-grid prompt-grid">
+                <article class="video-card">
+                  <video data-src="assets/videos/32_slide12_03_Proxy_Video_Text_Prompt_A_high_tech_robotics_lab_A_hig.mp4" preload="metadata" muted autoplay loop playsinline controls></video>
+                </article>
+                <article class="video-card">
+                  <video data-src="assets/videos/33_slide12_02_Proxy_Video_Text_Prompt_A_high_tech_robotics_lab_A_hig.mp4" preload="metadata" muted autoplay loop playsinline controls></video>
+                  <p class="prompt-text">A high-tech robotics lab. A high-speed robotic arm calculates the trajectory and strikes the cue ball with a carbon-fiber stick, breaking the billiard rack.</p>
+                </article>
+                <article class="video-card">
+                  <video data-src="assets/videos/35_slide12_01_Proxy_Video_Text_Prompt_A_high_tech_robotics_lab_A_hig.mp4" preload="metadata" muted autoplay loop playsinline controls></video>
+                  <p class="prompt-text">A sunny outdoor patio. Someone strikes the white ball with a cue stick, breaking the tightly packed triangle of pool balls.</p>
+                </article>
+                <article class="video-card">
+                  <video data-src="assets/videos/34_slide12_04_Proxy_Video_Text_Prompt_A_high_tech_robotics_lab_A_hig.mp4" preload="metadata" muted autoplay loop playsinline controls></video>
+                  <p class="prompt-text">A dusty garage. A person breaks the pool balls on an old, worn-out table using a chipped cue stick.</p>
+                </article>
+              </div>
+            </div>
+          </section>
+
+          <section class="demo-group split-results">
+            <div class="result-suite">
+              <h4>Failure Cases</h4>
+              <div class="video-grid pair-grid">
+                <article class="video-card">
+                  <video data-src="assets/videos/50_slide19_01_Proxy_Video_Ours.mp4" preload="metadata" muted autoplay loop playsinline controls></video>
+                  <h3>Proxy Video</h3>
+                </article>
+                <article class="video-card">
+                  <video data-src="assets/videos/49_slide19_04_Proxy_Video_Ours.mp4" preload="metadata" muted autoplay loop playsinline controls></video>
+                  <h3>Ours</h3>
+                </article>
+                <article class="video-card">
+                  <video data-src="assets/videos/47_slide19_03_Proxy_Video_Ours.mp4" preload="metadata" muted autoplay loop playsinline controls></video>
+                  <h3>Proxy Video</h3>
+                </article>
+                <article class="video-card">
+                  <video data-src="assets/videos/48_slide19_02_Proxy_Video_Ours.mp4" preload="metadata" muted autoplay loop playsinline controls></video>
+                  <h3>Ours</h3>
+                </article>
+              </div>
+            </div>
+            <div class="result-suite">
+              <h4>ProxyUp on Wan2.1-T2V-14B</h4>
+              <div class="video-grid extended-grid">
+                <article class="video-card">
+                  <video data-src="assets/videos/61_slide23_04_Proxy_Video_Ours_Proxy_Video_Ours.mp4" preload="metadata" muted autoplay loop playsinline controls></video>
+                  <h3>Proxy Video</h3>
+                </article>
+                <article class="video-card">
+                  <video data-src="assets/videos/60_slide23_08_Proxy_Video_Ours_Proxy_Video_Ours.mp4" preload="metadata" muted autoplay loop playsinline controls></video>
+                  <h3>Ours</h3>
+                </article>
+                <article class="video-card">
+                  <video data-src="assets/videos/56_slide23_05_Proxy_Video_Ours_Proxy_Video_Ours.mp4" preload="metadata" muted autoplay loop playsinline controls></video>
+                  <h3>Proxy Video</h3>
+                </article>
+                <article class="video-card">
+                  <video data-src="assets/videos/57_slide23_03_Proxy_Video_Ours_Proxy_Video_Ours.mp4" preload="metadata" muted autoplay loop playsinline controls></video>
+                  <h3>Ours</h3>
+                </article>
+                <article class="video-card">
+                  <video data-src="assets/videos/58_slide23_07_Proxy_Video_Ours_Proxy_Video_Ours.mp4" preload="metadata" muted autoplay loop playsinline controls></video>
+                  <h3>Proxy Video</h3>
+                </article>
+                <article class="video-card">
+                  <video data-src="assets/videos/59_slide23_01_Proxy_Video_Ours_Proxy_Video_Ours.mp4" preload="metadata" muted autoplay loop playsinline controls></video>
+                  <h3>Ours</h3>
+                </article>
+                <article class="video-card">
+                  <video data-src="assets/videos/62_slide23_02_Proxy_Video_Ours_Proxy_Video_Ours.mp4" preload="metadata" muted autoplay loop playsinline controls></video>
+                  <h3>Proxy Video</h3>
+                </article>
+                <article class="video-card">
+                  <video data-src="assets/videos/63_slide23_06_Proxy_Video_Ours_Proxy_Video_Ours.mp4" preload="metadata" muted autoplay loop playsinline controls></video>
+                  <h3>Ours</h3>
+                </article>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="section" id="acknowledgements">
+        <div class="container narrow">
+          <h2>Acknowledgements</h2>
+          <p class="acknowledgement">
+            We thank <a href="https://articraft3d.github.io/" target="_blank" rel="noreferrer">Articraft3D</a>
+            and <a href="https://raynehe.github.io/PRISM/" target="_blank" rel="noreferrer">NeoWorld-Pro</a>
+            for providing proxy video sources used in the gallery.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" id="bibtex">
+        <div class="container narrow">
+          <div class="section-heading compact">
+            <h2>BibTeX</h2>
+            <button class="copy-button" type="button" data-copy-target="bibtex-code">Copy</button>
+          </div>
+          <pre class="bibtex"><code id="bibtex-code">@article{zhou2026proxyup,
+  title     = {ProxyUp: Training-Free Proxy-Conditioned Video Generation for Controllable Dynamics},
+  author    = {Zhou, Zanwei and Cen, Jiazhong and Fang, Jiemin and He, Yumeng and Yang, Chen and Li, Sikuang and Meng, Fanpeng and Bao, Zhikuan and Shen, Wei and Tian, Qi},
+  year      = {2026}
+}</code></pre>
+          <p class="copy-status" aria-live="polite"></p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>ProxyUp project page. Built as a self-contained static site.</p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
